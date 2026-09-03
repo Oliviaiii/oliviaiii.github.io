@@ -1,0 +1,7 @@
+# Local source résumés that are not part of the public site
+/林芷筠.pdf
+/林芷筠CV_2026.pdf
+
+# Local QA artifacts
+/.playwright-cli/
+/tmp/
