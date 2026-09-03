@@ -184,6 +184,49 @@ h1 em, .contact h2 em { font-family: var(--serif); font-weight: 600; }
 .split { display: grid; grid-template-columns: 1.4fr .6fr; gap: 4rem; align-items: end; }
 .split > p { max-width: 420px; margin: 0; color: var(--ink-soft); }
 
+.ai-practice { padding-top: 7rem; }
+.ai-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  padding: 1px;
+  background: var(--ink);
+}
+.ai-capability {
+  min-height: 300px;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background: var(--white);
+}
+.ai-capability > span {
+  display: block;
+  margin-bottom: 4.5rem;
+  color: var(--orange);
+  font-family: var(--serif);
+}
+.ai-capability h3 {
+  max-width: 500px;
+  margin-bottom: .8rem;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+  line-height: 1.18;
+  letter-spacing: -.035em;
+}
+.ai-capability p { max-width: 540px; margin: 0; color: var(--ink-soft); font-size: .9rem; }
+.ai-toolchain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  margin-top: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: var(--white);
+  background: var(--orange);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.ai-toolchain b { font-size: 1rem; font-weight: 400; }
+
 .impact { max-width: none; color: var(--white); background: var(--ink); }
 .impact > * { max-width: calc(var(--max) - 6rem); margin-right: auto; margin-left: auto; }
 .impact .section-heading h2 { color: var(--white); }
@@ -277,6 +320,8 @@ h1 em, .contact h2 em { font-family: var(--serif); font-weight: 600; }
   .timeline-row { grid-template-columns: .4fr 1fr; }
   .timeline-row > p { grid-column: 2; }
   .split { gap: 1.5rem; }
+  .ai-toolchain { align-items: flex-start; flex-direction: column; }
+  .ai-toolchain b { transform: rotate(90deg); }
 }
 
 @media (max-width: 640px) {
@@ -288,6 +333,9 @@ h1 em, .contact h2 em { font-family: var(--serif); font-weight: 600; }
   h1 { font-size: clamp(3rem, 15.5vw, 5.2rem); }
   .hero-actions .button { width: 100%; }
   .metric-grid, .project-grid { grid-template-columns: 1fr; }
+  .ai-capability-grid { grid-template-columns: 1fr; }
+  .ai-capability { min-height: 260px; }
+  .ai-capability > span { margin-bottom: 3rem; }
   .metric-card { min-height: 210px; }
   .metric-card strong { margin-bottom: 3.5rem; }
   .case-study { grid-template-columns: 1fr; gap: 1rem; }
