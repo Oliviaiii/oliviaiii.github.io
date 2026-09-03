@@ -5,3 +5,4 @@
 # Local QA artifacts
 /.playwright-cli/
 /tmp/
+/output/playwright/

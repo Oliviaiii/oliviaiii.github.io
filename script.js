@@ -12,6 +12,9 @@ function setLanguage(language) {
       element.textContent = value;
     }
   });
+  document.querySelectorAll('[data-href-zh][data-href-en]').forEach((element) => {
+    element.href = element.dataset[`href${isEnglish ? 'En' : 'Zh'}`];
+  });
   languageButton.setAttribute('aria-pressed', String(isEnglish));
   languageParts[0].classList.toggle('active', !isEnglish);
   languageParts[2].classList.toggle('active', isEnglish);
