@@ -146,7 +146,9 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
 .btn-sm { padding: 6px 10px; font-size: 13px; }
 .btn .arrow { font-family: var(--mono); }
 
-.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.chips { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 6px; padding: 0; margin: 0; list-style: none; }
+/* Grid/flex lists lay themselves out with gap; cancel the global `li + li` rhythm so items keep equal size. */
+.chips > li, .case .metrics > li, .contact-list > li, .case-detail .kv > li, .pipeline > li, .steps > li { margin-top: 0; }
 .chip {
   font-family: var(--mono); font-size: 12px; line-height: 1;
   padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
