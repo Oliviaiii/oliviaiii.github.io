@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
   <script src="script.js?v=4" defer></script>
 </head>
 <body>
@@ -87,6 +87,15 @@
             </ul>
           </div>
           <div class="block">
+            <h4>畫面</h4>
+            <div class="gallery">
+              <figure><a href="assets/shots/cms-store-fresh.webp" target="_blank" rel="noreferrer"><img src="assets/shots/cms-store-fresh.webp" alt="平台上的客戶網站前台：生鮮電商首頁" loading="lazy" width="1200" height="683"></a><figcaption><b>客戶站前台（生鮮電商）。</b>公版主題＋客戶覆寫層：客戶可以貼自己的 CSS，不影響其他租戶。這套主題系統的 CSS 是我重寫的。</figcaption></figure>
+              <figure><a href="assets/shots/cms-store-select.webp" target="_blank" rel="noreferrer"><img src="assets/shots/cms-store-select.webp" alt="另一個客戶站：選品商城的商品列表與分類樹" loading="lazy" width="1200" height="654"></a><figcaption><b>另一個客戶站（選品商城）。</b>分類樹、排序、每頁筆數、篩選，全部是後台設定，不是客製；多語系網址遷移也是我驗收的票。</figcaption></figure>
+              <figure><a href="assets/shots/cms-store-fresh-product.webp" target="_blank" rel="noreferrer"><img src="assets/shots/cms-store-fresh-product.webp" alt="商品頁：多規格、溫層標示、加入購物車" loading="lazy" width="1200" height="533"></a><figcaption><b>商品頁。</b>多規格、溫層標示、直接購買；購物車、物流方式、金流回呼、會員驗證是我用瀏覽器逐一實測的模組。</figcaption></figure>
+              <div class="note">後台畫面（Widget preview-first 編輯器、訂單管理改版）需要登入，整理中；可以現場展示。</div>
+            </div>
+          </div>
+          <div class="block">
             <h4>我自己寫的部分（761 個 commit，2025.10 起）</h4>
             <ul>
               <li><strong>Widget preview-first 編輯器（#879）</strong>：三欄式、預覽優先；資料層、受控樣式參數、畫布與內容編輯；圖片／影片素材在預覽上直接新增、來源逐部各自決定；畫布依語系過濾。103 個 commit。</li>
@@ -151,6 +160,24 @@
             </ul>
           </div>
           <div class="block">
+            <h4>畫面</h4>
+            <div class="gallery">
+              <figure><a href="assets/shots/b2b-site-home.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-site-home.webp" alt="B2B 平台官方網站首頁" loading="lazy" width="1200" height="750"></a><figcaption><b>官方網站（M13）。</b>功能介紹、產業別、方案、使用教學、預約導覽——頁面與內容都是我做的，公開探索與供應商申請也從這裡進來。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-dashboard.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-dashboard.webp" alt="供應商後台總覽" loading="lazy" width="1200" height="750"></a><figcaption><b>供應商總覽。</b>待處理訂單、開店完成度、近 30 天營收與本月熱銷；第一次登入就知道下一步要做什麼。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-orders.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-orders.webp" alt="供應商訂單管理" loading="lazy" width="1200" height="750"></a><figcaption><b>訂單管理。</b>狀態分頁、付款方式、下單時間、待接單提醒；列表採「列＋側欄」，不跳頁。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-order-detail.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-order-detail.webp" alt="訂單詳情側欄" loading="lazy" width="1200" height="750"></a><figcaption><b>訂單詳情。</b>品項、等級折扣、運費、應收；接單／調整後接單／拒單三個動作放同一層級——這是我在實測時改掉的。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-create-order.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-create-order.webp" alt="代客建單" loading="lazy" width="1200" height="750"></a><figcaption><b>代客建單。</b>客人用電話或 LINE 口頭下單時，供應商替他挑品項、填數量，送出讓對方確認；訂單模組（M5）我寫的。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-market-price.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-market-price.webp" alt="今日價格頁" loading="lazy" width="1200" height="750"></a><figcaption><b>今日價格。</b>時價商品每天更新今日報價，沒填就沿用生效價；蔬果、水產這類客戶的核心需求。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-statements.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-statements.webp" alt="對帳單與月結" loading="lazy" width="1200" height="750"></a><figcaption><b>對帳單／月結。</b>尚未收、已逾期、依帳齡分段；平台不碰金流，只把帳算清楚。</figcaption></figure>
+              <figure><a href="assets/shots/b2b-products.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-products.webp" alt="商品管理" loading="lazy" width="1200" height="750"></a><figcaption><b>商品管理。</b>上千品項用 Excel 一次匯入、多規格與買多便宜；「供-09 大量匯入」教學影片就是錄這段。</figcaption></figure>
+              <div class="phones">
+                <figure><a href="assets/shots/b2b-merchant-products.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-merchant-products.webp" alt="商家端商品瀏覽（LINE 內）" loading="lazy" width="600" height="1298"></a><figcaption><b>商家端（LINE LIFF）。</b>瀏覽商品、規格數與起價，申請合作。</figcaption></figure>
+                <figure><a href="assets/shots/b2b-merchant-cart.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-merchant-cart.webp" alt="商家端購物車" loading="lazy" width="600" height="1298"></a><figcaption><b>購物車。</b>等級折扣、溫層運費即時計算，多家供應商分開結。</figcaption></figure>
+                <figure><a href="assets/shots/b2b-merchant-orders.webp" target="_blank" rel="noreferrer"><img src="assets/shots/b2b-merchant-orders.webp" alt="商家端訂單列表" loading="lazy" width="600" height="1298"></a><figcaption><b>訂單列表。</b>供應商、金額、目前進度；通知走 LINE。</figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <div class="block">
             <h4>我自己寫的部分（1,172 個 commit，2026.05 起）</h4>
             <ul>
               <li><strong>從零開始。</strong>Docker 環境與 Laravel 骨架、140 個 migration、802 個 PHP 檔＋254 個 React 元件（約 19 萬行）；feat 423／fix 335／docs 147。</li>
@@ -213,6 +240,17 @@
               <li><strong>維運自動化。</strong>建每日 automation 檢查首頁是否正常、是否出現錯誤殼頁；協調弱點掃描、App 檢測與稽核文件的交付。</li>
               <li><strong>可點擊原型。</strong>2026 年初做了新版網站與影音後台的可點擊原型（32 頁靜態 HTML，含生活體驗、會員、影音後台四頁 Demo），附前後台 UI／UX 設計理念文件，作為提案與討論的基準。</li>
             </ul>
+          </div>
+          <div class="block">
+            <h4>畫面</h4>
+            <div class="gallery">
+              <figure><a href="assets/shots/ott-schedule.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-schedule.webp" alt="OTT 平台節目表" loading="lazy" width="1200" height="691"></a><figcaption><b>節目表。</b>這一頁的資料就是 CSV／雲端儲存自動介接的結果：整月、單週、缺漏、覆蓋、邊界共 37 個案例逐案驗過。</figcaption></figure>
+              <figure><a href="assets/shots/ott-home.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-home.webp" alt="OTT 平台正式站首頁" loading="lazy" width="1200" height="691"></a><figcaption><b>正式站首頁。</b>維運中的服務：每日自動化健康檢查、弱點掃描與 App 檢測配合、每季簡報。</figcaption></figure>
+              <figure><a href="assets/shots/ott-live.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-live.webp" alt="OTT 平台直播頁" loading="lazy" width="1200" height="691"></a><figcaption><b>直播頁。</b>多裝置與多瀏覽器驗收的項目之一。</figcaption></figure>
+              <figure><a href="assets/shots/ott-proto-home.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-proto-home.webp" alt="新版網站可點擊原型首頁" loading="lazy" width="1200" height="691"></a><figcaption><b>新版網站原型：首頁。</b>2026 年初做的 32 頁可點擊原型，讓提案討論有具體畫面可以指。</figcaption></figure>
+              <figure><a href="assets/shots/ott-proto-lifestyle.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-proto-lifestyle.webp" alt="原型：生活體驗日報" loading="lazy" width="1200" height="691"></a><figcaption><b>原型：生活體驗日報。</b>節氣、主題、任務、社群動態——把「頻道網站」往「生活內容平台」推的提案。</figcaption></figure>
+              <figure><a href="assets/shots/ott-proto-cms.webp" target="_blank" rel="noreferrer"><img src="assets/shots/ott-proto-cms.webp" alt="影音後台原型：頁面瀏覽分析" loading="lazy" width="1200" height="700"></a><figcaption><b>影音後台原型。</b>頁面瀏覽分析、管理員與群組、內容管理四頁 Demo，附前後台 UI／UX 設計理念文件。</figcaption></figure>
+            </div>
           </div>
           <div class="block">
             <h4>結果</h4>
@@ -342,12 +380,14 @@
           <ul class="chips"><li class="chip">Agent skill</li><li class="chip">UserPromptSubmit hook</li><li class="chip">libtabe 詞頻</li></ul>
         </a>
         <a class="project" href="https://oliviaiii.github.io/civil-law-quiz-tw/" target="_blank" rel="noreferrer">
+          <img class="thumb" src="assets/shots/tool-civil-law.webp" alt="書記官法科研習室網站畫面" loading="lazy" width="1200" height="750">
           <div class="top"><h3>書記官法科研習室</h3><span class="ext">網站 ↗</span></div>
           <p>司法特考四等法院書記官考古題：9 科、1,090 題官方試題、850 題逐題解析、模擬考、錯題本、間隔複習、法條速查、申論考點總覽；PWA 離線可用。</p>
           <p class="why"><b>WHY</b>解析採「爭點、法律規則、套入本題、結論」；每題可一鍵回報勘誤；申論考點在真人審稿前一律標 draft。</p>
           <ul class="chips"><li class="chip">Next.js</li><li class="chip">PWA</li><li class="chip">考選部 PDF 匯入器</li></ul>
         </a>
         <a class="project" href="https://oliviaiii.github.io/iPas-quiz/" target="_blank" rel="noreferrer">
+          <img class="thumb" src="assets/shots/tool-ipas.webp" alt="iPAS 刷題工具網站畫面" loading="lazy" width="1200" height="750">
           <div class="top"><h3>iPAS AI 應用規劃師刷題</h3><span class="ext">網站 ↗</span></div>
           <p>初級與中級 12 份官方試卷共 600 題，逐頁對照官方 PDF，每題可追溯來源與頁碼；600 題 A–D 選項解析初稿。</p>
           <p class="why"><b>WHY</b>兩階段交付：先把全部題目匯入並核對答案，才開始批次詳解。AI 獨立複核以 10 題為一批留紀錄，永遠不會被標成人工複核。</p>
