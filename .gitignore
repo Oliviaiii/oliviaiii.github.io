@@ -6,3 +6,4 @@
 /.playwright-cli/
 /tmp/
 /output/playwright/
+.claude/

@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 工作方式｜林芷筠 Olivia Lin</title>
+  <meta name="description" content="我怎麼指揮 Claude Code 與 Codex 做產品開發：六個月 514 個 session 的真實數據、我建立的制度（憲章、skills、驗收員 agent、hook）、我實際下的任務指令，以及踩過的坑。">
+  <meta name="theme-color" content="#fbfbf9">
+  <meta property="og:title" content="AI 工作方式｜林芷筠 Olivia Lin">
+  <meta property="og:description" content="我不只會問 AI，我設計它怎麼工作。514 個 session、80,272 次工具呼叫、294 張 issue 的實證。">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <script src="script.js?v=4" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · PM</small></a>
+    <nav class="nav" aria-label="主導覽">
+      <a href="index.html">履歷</a>
+      <a href="work.html">案例</a>
+      <a href="ai-workflow.html" aria-current="page">AI 工作方式</a>
+      <a href="index.html#contact">聯絡</a>
+    </nav>
+    <a class="btn btn-sm header-cta" href="林芷筠中文履歷.pdf" download>PDF 履歷</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================================================================ INTRO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow"><b>AI 工作方式</b> · 實證版</p>
+        <h1>我不只會問 AI，<br>我設計它<em>怎麼工作</em>。</h1>
+        <p class="lead">
+          很多人會說「我有在用 AI」。這一頁想回答的是更具體的問題：AI 在我手上做了多少事、我怎麼讓它可靠、
+          什麼事我從不交出去。所有數字都來自我本機的對話紀錄與 GitHub，用腳本統計，不是印象。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#harness">看我建立的制度 ↓</a>
+          <a class="btn" href="#prompts">看我實際下的指令 ↓</a>
+          <a class="btn" href="#lessons">踩過的坑 ↓</a>
+        </div>
+      </div>
+      <aside class="fact-card" aria-label="數據來源">
+        <div class="fact-head"><span class="eyebrow" style="margin:0">數據來源</span><span class="tiny num">2026.03.30 – 09.05</span></div>
+        <dl>
+          <div class="row"><dt>對話紀錄</dt><dd>本機 <span class="num">~/.claude</span> 與 <span class="num">~/.codex</span> 的 session 檔，共 <span class="num">2.33 GB</span>、514 份</dd></div>
+          <div class="row"><dt>統計方式</dt><dd>Python 腳本逐檔解析：我的指令數、AI 回合數、每種工具呼叫次數、起訖時間</dd></div>
+          <div class="row"><dt>GitHub</dt><dd><span class="num">gh</span> CLI 搜尋 API：issue、留言、PR、commit（含公司私有倉庫）</dd></div>
+          <div class="row"><dt>沒算進去</dt><dd>網頁版與手機 App 發起的遠端 session、Gemini CLI、AI 產出的文件字數</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================================================================ DASHBOARD -->
+  <section class="section flush" id="numbers" style="padding-top:0">
+    <div class="container">
+      <div class="dark-panel">
+        <p class="eyebrow"><b>六個月</b> · 三個產品 · 兩套 agent · 一個人</p>
+        <div class="dash-grid">
+          <div class="dash"><div class="v">514</div><div class="l">個 session（Claude Code 300 · Codex 214）</div></div>
+          <div class="dash"><div class="v">3,671</div><div class="l">則我下的指令；中位數每 session 5 則</div></div>
+          <div class="dash"><div class="v">80,272</div><div class="l">次工具呼叫：改碼、跑指令、開瀏覽器、查資料庫</div></div>
+          <div class="dash"><div class="v">122</div><div class="l">個 session 用瀏覽器實際操作驗收（24%）</div></div>
+          <div class="dash"><div class="v">62</div><div class="l">個 session 派出子代理平行處理</div></div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash"><div class="v">294</div><div class="l">張 GitHub issue 由我開立</div></div>
+          <div class="dash"><div class="v">293</div><div class="l">張留下驗收、決策或卡關留言</div></div>
+          <div class="dash"><div class="v">175</div><div class="l">個 commit（三個私有倉庫＋公開專案）</div></div>
+          <div class="dash"><div class="v">95<small>天</small></div><div class="l">有 session 紀錄的工作日</div></div>
+          <div class="dash"><div class="v">98%</div><div class="l">的 session 在週間 08–17 時開始</div></div>
+        </div>
+
+        <div class="dash-row">
+          <div class="chart-box">
+            <div class="t"><span>每月 session 數</span><span>Claude Code 於 7 月加入</span></div>
+            <svg viewBox="0 0 520 170" role="img" aria-label="每月 session 數長條圖：3 月 4、4 月 41、5 月 57、6 月 31、7 月 75、8 月 271、9 月 35（至 9/5）">
+              <g class="bars">
+                <rect class="bar codex" x="22"  y="148.2" width="48" height="1.8"/>
+                <rect class="bar codex" x="94"  y="131.8" width="48" height="18.2"/>
+                <rect class="bar codex" x="166" y="124.8" width="48" height="25.2"/>
+                <rect class="bar codex" x="238" y="136.3" width="48" height="13.7"/>
+                <rect class="bar codex" x="310" y="134.1" width="48" height="15.9"/>
+                <rect class="bar"       x="310" y="116.8" width="48" height="17.3"/>
+                <rect class="bar codex" x="382" y="130.1" width="48" height="19.9"/>
+                <rect class="bar"       x="382" y="30"    width="48" height="100.1"/>
+                <rect class="bar codex" x="454" y="149.6" width="48" height="0.4"/>
+                <rect class="bar"       x="454" y="134.5" width="48" height="15.1"/>
+              </g>
+              <g text-anchor="middle">
+                <text x="46" y="142" class="val">4</text><text x="118" y="126" class="val">41</text><text x="190" y="119" class="val">57</text>
+                <text x="262" y="130" class="val">31</text><text x="334" y="111" class="val">75</text><text x="406" y="24" class="val">271</text><text x="478" y="128" class="val">35</text>
+              </g>
+              <line x1="16" y1="150.5" x2="508" y2="150.5" stroke="#2e333d"/>
+              <g text-anchor="middle">
+                <text x="46" y="166">3月</text><text x="118" y="166">4月</text><text x="190" y="166">5月</text><text x="262" y="166">6月</text>
+                <text x="334" y="166">7月</text><text x="406" y="166">8月</text><text x="478" y="166">9月*</text>
+              </g>
+            </svg>
+            <div class="legend"><span><i style="background:#3fb9a8"></i>Claude Code</span><span><i style="background:#5b6a8a"></i>Codex</span><span>* 9 月只到 9/5</span></div>
+            <p class="tiny" style="color:var(--dark-ink-2);margin:10px 0 0">8 月暴增不是因為我變忙，是制度成熟後可以同時開多個 worktree、多個 session 平行推進不同票。</p>
+          </div>
+          <div class="chart-box">
+            <div class="t"><span>AI 在做什麼（80,272 次工具呼叫）</span></div>
+            <div class="mix" role="img" aria-label="工具呼叫組成：跑指令 62.6%、改寫程式 14.2%、瀏覽器操作 12.0%、讀取與搜尋 7.6%、派工子代理 1.3%、其他 2.3%">
+              <span class="m1" style="width:62.6%"></span><span class="m2" style="width:14.2%"></span><span class="m3" style="width:12%"></span><span class="m4" style="width:7.6%"></span><span class="m5" style="width:1.3%"></span><span class="m6" style="width:2.3%"></span>
+            </div>
+            <div class="mix-legend">
+              <span><i class="m1"></i>跑指令、測試、git <b>62.6%</b></span>
+              <span><i class="m2"></i>改寫程式 <b>14.2%</b></span>
+              <span><i class="m3"></i>瀏覽器操作驗收 <b>12.0%</b></span>
+              <span><i class="m4"></i>讀取與搜尋程式碼 <b>7.6%</b></span>
+              <span><i class="m5"></i>派工子代理 <b>1.3%</b></span>
+              <span><i class="m6"></i>其他（查資料庫、上網、問我）<b>2.3%</b></span>
+            </div>
+            <div class="t" style="margin-top:16px"><span>session 開始時段（台北時間）</span></div>
+            <svg viewBox="0 0 520 96" role="img" aria-label="session 開始時段分布：集中在 8 點到 17 點，16 點最多（71 個）；18 點以後合計 8 個">
+              <g class="bars">
+                <rect class="bar" x="14"  y="45.4" width="28" height="34.6"/><rect class="bar" x="50"  y="24.2" width="28" height="55.8"/><rect class="bar" x="86"  y="38.6" width="28" height="41.4"/>
+                <rect class="bar" x="122" y="40.3" width="28" height="39.7"/><rect class="bar" x="158" y="44.5" width="28" height="35.5"/><rect class="bar" x="194" y="35.2" width="28" height="44.8"/>
+                <rect class="bar" x="230" y="41.1" width="28" height="38.9"/><rect class="bar" x="266" y="32.7" width="28" height="47.3"/><rect class="bar" x="302" y="20"   width="28" height="60"/>
+                <rect class="bar" x="338" y="50.4" width="28" height="29.6"/><rect class="bar codex" x="374" y="79.2" width="28" height="0.8"/><rect class="bar codex" x="410" y="77.5" width="28" height="2.5"/>
+                <rect class="bar codex" x="446" y="78.3" width="28" height="1.7"/><rect class="bar codex" x="482" y="78.3" width="28" height="1.7"/>
+              </g>
+              <line x1="10" y1="80.5" x2="514" y2="80.5" stroke="#2e333d"/>
+              <g text-anchor="middle">
+                <text x="28" y="94">8</text><text x="64" y="94">9</text><text x="100" y="94">10</text><text x="136" y="94">11</text><text x="172" y="94">12</text><text x="208" y="94">13</text><text x="244" y="94">14</text>
+                <text x="280" y="94">15</text><text x="316" y="94">16</text><text x="352" y="94">17</text><text x="388" y="94">18</text><text x="424" y="94">19</text><text x="460" y="94">20</text><text x="496" y="94">21</text>
+              </g>
+              <text x="316" y="14" text-anchor="middle" class="val">71</text>
+            </svg>
+            <p class="tiny" style="color:var(--dark-ink-2);margin:8px 0 0">這是上班用的工具，不是下班玩的玩具。週末只有 5 個工作日有紀錄。</p>
+          </div>
+        </div>
+        <div class="foot">工具分類方式：Bash／exec／PowerShell 歸「跑指令」；Edit／Write／apply_patch 歸「改寫程式」；所有瀏覽器與 Playwright／Chrome DevTools 工具歸「瀏覽器操作」；Read／Grep／Glob 歸「讀取與搜尋」；Agent／Task 系列歸「派工子代理」。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ HARNESS -->
+  <section class="section" id="harness">
+    <div class="container">
+      <div class="section-head">
+        <div class="index">01 / 制度</div>
+        <div>
+          <h2>AI 可靠，是因為我把規則寫成它會遵守的形狀。</h2>
+          <p class="desc">這不是一份 prompt。這是一套放在專案倉庫裡、跟著程式碼一起版控的制度：什麼永遠不能做、做 X 前要先讀 Y、什麼叫「做完了」。下面是主要產品倉庫裡的實際清單。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="spec">
+          <thead><tr><th>層</th><th>內容</th><th>規模</th><th>解決什麼問題</th></tr></thead>
+          <tbody>
+            <tr><td class="k">憲章 <code>CLAUDE.md</code></td><td>唯一規範入口：執行環境判別、永遠生效的紅線、任務路由表（做 X 前必讀 Y）</td><td class="n">818 → 200 行</td><td>舊版 818 行每個 session 全量載入，規則互相打架、遵循率下降；重構成三層，細節按需載入</td></tr>
+            <tr><td class="k">規範 <code>docs/rules/</code></td><td>commit 與 ChangeLog、GitHub Project 狀態、部署與資料、worktree 開發環境、自我審查陷阱清單…</td><td class="n">12 篇</td><td>把「踩過三次的坑」合併成一條規則，而不是留三段話</td></tr>
+            <tr><td class="k">制度文件 <code>docs/agents/</code></td><td>harness 診斷、模型調度、判斷準則、派工模板、維護協議、給未來 session 的信</td><td class="n">8 篇</td><td>讓任何等級的模型、任何新接手的 session 都知道制度為什麼存在、怎麼改</td></tr>
+            <tr><td class="k">規格 OpenSpec</td><td>每個能力一份規格，PR 必須對應規格的每個 <code>[x]</code> 到具體測試</td><td class="n">104 個</td><td>需求不再只活在對話裡；審查有東西可以對照</td></tr>
+            <tr><td class="k">Skills</td><td><code>/issue-start</code> 一鍵建 worktree＋專屬 DB＋預覽網址並校正看板；<code>/commit</code>；<code>/pr-review</code> 審查迴圈；<code>/diagnose</code> 六階段除錯；<code>/screenshot</code></td><td class="n">7 個</td><td>重複流程變成一個指令；步驟不可跳過，寫在 skill 裡而不是靠記憶</td></tr>
+            <tr><td class="k">Agents</td><td><code>verifier</code> 驗收員：只拿產出物＋驗收條件，逐條附證據；<code>skeptic</code> 對抗審查員：預設立場「這份產出有問題」</td><td class="n">2 個</td><td>驗證不自驗。審查者看不到實作過程，不會被實作者的自我評價影響</td></tr>
+            <tr><td class="k">Hook <code>verify-gate</code></td><td>Stop hook：改了程式碼卻沒跑驗證、也沒寫「未驗證」誠實聲明 → 擋下收工</td><td class="n">1 個</td><td>「完成」要有機器判準，不能靠 AI 自我申報</td></tr>
+            <tr><td class="k">記憶</td><td><code>feedback_*</code>（我糾正過的事）與 <code>project_*</code>（決策與現況），一頁索引、按需展開</td><td class="n">80+ 條</td><td>同一件事不用講第二次：前台禁 emoji、禁原生 alert、手機禁橫向捲動、不假綠…</td></tr>
+            <tr><td class="k">Codex 端</td><td>PR 審查、Issue 起草、Stage 發版 skills；每次 session 的 rollout 摘要與偏好訊號</td><td class="n">4 ＋ 20 份</td><td>兩套 agent 共用同一套規則，換工具不用重教</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quote-grid" style="margin-top:22px">
+        <blockquote class="quote">
+          <p>「沒有證據的 ✅ 是謊報——寧可標 ⚠️ 並說明缺什麼證據。你只驗收、不修改、不補寫實作。」</p>
+          <span class="src">— .claude/agents/verifier.md，驗收員的判定紀律</span>
+        </blockquote>
+        <blockquote class="quote">
+          <p>「自主權是攢出來的，一次假綠就會全部賠掉。卡住的正確動作永遠是：如實報告 ＋ 標 skip ＋ 開票。」</p>
+          <span class="src">— docs/agents/letter-to-future-sessions.md</span>
+        </blockquote>
+        <blockquote class="quote">
+          <p>「畫面綠了、tag 推了、CI 綠了，都不等於驗收通過。要測的是那個精確的條件，然後把存下來的狀態讀回來。」</p>
+          <span class="src">— Codex 記憶檔，我反覆糾正後沉澱的偏好</span>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ PIPELINE -->
+  <section class="section" id="pipeline">
+    <div class="container">
+      <div class="section-head">
+        <div class="index">02 / 流程</div>
+        <div>
+          <h2>一張票怎麼走完。</h2>
+          <p class="desc">● 是我親自判斷或操作，◇ 是 AI 依制度執行、我抽查。重點不在 AI 做了多少，在於每一步交接時都有東西可以核對。</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li><b>需求進 Issue<small>9 種表單 · 驗收條件寫進票</small></b><p>從客戶訊息、現場觀察或我自己用瀏覽器走一遍的體驗，寫成有情境、有驗收條件的票。需要老闆拍板的事先收斂成白話選項。</p><span class="who me">我 · 需求與判斷</span></li>
+        <li><b>規格<small>OpenSpec · 104 個能力</small></b><p>功能有規格才能審；規格的每個核取項目之後都要對到測試。AI 幫我起草，我改到 RD 看得懂、驗收驗得了。</p><span class="who me">我定義 · AI 起草</span></li>
+        <li><b>開工環境<small>/issue-start</small></b><p>一個指令建好 worktree、專屬資料庫、預覽網址，並把看板校正到「開發中」。多張票可以平行開，互不污染。</p><span class="who ai">AI 執行</span></li>
+        <li><b>實作<small>Claude Code / Codex</small></b><p>每個 session 從交接文件開始，環境限制寫成 MUST。大量讀取一律派子代理，主對話只收結論與檔案行號。</p><span class="who ai">AI 執行 · 我抽查</span></li>
+        <li><b>雙審<small>verifier + skeptic</small></b><p>驗收員逐條對照驗收條件附證據；對抗審查員預設「有問題」找 blocker。兩者都拿不到實作者的理由。</p><span class="who ai">AI 互審</span></li>
+        <li><b>瀏覽器實測<small>Playwright / Chrome MCP</small></b><p>像使用者一樣點過一遍：下單、觸發通知、切 5 種螢幕寬度、讀回資料庫。122 個 session 做這件事。</p><span class="who me">我下條件 · AI 操作 · 我看結果</span></li>
+        <li><b>PR 審查迴圈<small>/pr-review · @claude · CI</small></b><p>開 PR 觸發 AI 審查，讀意見→修正→再觸發，上限依變更檔數 3／6／10 輪。CI 分 Floor（紅燈必修）與 Advisory（只回報）。</p><span class="who ai">AI 迴圈 · 我看最後一輪</span></li>
+        <li><b>合併與晉升<small>/pr-review --merged</small></b><p>三道閘門：審查通過且留言晚於最後一次 push、CI Floor 全綠、無衝突。合併後看板階段前進一級，狀態改「測試中」。</p><span class="who me">我確認 · AI 執行</span></li>
+        <li><b>正式站驗證<small>health endpoint + 實際路徑</small></b><p>等 workflow 跑完，驗 <code>/up</code>，再走一次真正的流程。正式站只建可辨識、可回復的測試訂單。</p><span class="who me">我親自</span></li>
+        <li><b>結案或卡關<small>證據回填 Issue</small></b><p>通過就結案；卡關就在票裡寫清楚環境、觀察值、卡在哪、解除條件與重測條件，再逐張讀回確認留言存在。</p><span class="who me">我親自</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================================================================ PROMPTS -->
+  <section class="section" id="prompts">
+    <div class="container">
+      <div class="section-head">
+        <div class="index">03 / 指令</div>
+        <div>
+          <h2>我實際是怎麼下任務的。</h2>
+          <p class="desc">從 3,671 則指令裡挑四種代表性型態，原文節錄，只調整標點。共同點：範圍用票號界定、環境寫成 MUST、什麼時候該停下來講清楚。</p>
+        </div>
+      </div>
+      <div class="prompt-grid">
+        <div class="prompt">
+          <div class="bar"><span>交接式開工 · 2026-08-25 · Claude Code</span><span>同一張票的第 14 個 session</span></div>
+          <pre>接手 issue #879（Widget preview-first 編輯器）。
+先讀 .temp/issue879-handoff-2026-08-25.md，那份是最新交接。
+更早的 -08-24-pm 只在需要更早的歷史背景時才翻，
+-08-21-* 以前的除非我明說否則不用看。
+
+<span class="k">## 環境（MUST，先確認再動工）</span>
+- worktree：WSL …/.claude/worktrees/issue879，分支 feat/issue879
+- <span class="k">不要碰</span> C:\project\cms12（另一份 clone，在 develop）</pre>
+          <div class="why"><b>為什麼這樣寫：</b>一張大票跨了三週、二十幾個 session。每個 session 從上一個留下的交接文件開始，過期文件明說不用看，省 context 也省錯讀。</div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span>批次自主 · 2026-08-14 · Claude Code</span><span>24 張票一次交付</span></div>
+          <pre>把 issue #139 以後出現的 bug 全部修完，
+修好就測試，沒問題就 close，直到結束 #162 這張。
+若中途遇到其他問題，請先開 issue 紀錄、或到原票內留言，
+<span class="k">不要停下來問我</span>。</pre>
+          <div class="why"><b>為什麼這樣寫：</b>範圍用票號界定，停下來的條件講清楚，意外先記錄不打斷。能這樣派，是因為 commit 規則、測試規則、不假綠的規則早就在記憶檔裡。</div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span>驗收 · 2026-08-25 · Claude Code</span><span>同日 4 個 session · 100 則對話</span></div>
+          <pre>幫我開瀏覽器實測這幾張票是不是都完成了，
+完成的就幫我從「測試中」改成「結案」。</pre>
+          <div class="why"><b>為什麼這樣寫：</b>AI 要像使用者一樣操作，讀回結果，再動看板。沒通過的票，它會在票裡留言說明卡在哪，而不是含糊帶過。</div>
+        </div>
+        <div class="prompt">
+          <div class="bar"><span>決策收斂 · 2026-07-29 · Codex</span><span>23 張子票 · 83 個待決點</span></div>
+          <pre>把 #761 底下的子票整理出需要決策的部分，
+轉換成白話文讓我選。
+<span class="c">（我選完之後）</span>
+都先依照你的建議進行，然後補充到各個 issue 內。</pre>
+          <div class="why"><b>結果：</b>83 個工程層待決事項收斂成 5 組產品決策（正式環境唯讀盤點、資安與客戶資料處置、正式網址 SSOT、無內容頁回應政策、主機設定責任），拍板後回填 18 則留言，逐張讀回確認。決策不留在聊天室。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ LESSONS -->
+  <section class="section" id="lessons">
+    <div class="container">
+      <div class="section-head">
+        <div class="index">04 / 踩過的坑</div>
+        <div>
+          <h2>制度是坑填出來的。</h2>
+          <p class="desc">每一條都是實際發生過、有證據、然後改了規則的事。</p>
+        </div>
+      </div>
+      <div class="lessons">
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 工作全失</div>
+          <h3>規則假設只有一種執行環境</h3>
+          <p>憲章寫「禁止任何 git 寫入」，結果在遠端容器發起的 session 裡，AI 照字面拒絕 push；容器回收，整個 session 的工作蒸發。</p>
+          <p><b>改法：</b>憲章開頭先判別環境（本地互動／遠端自主），git 政策分流；引用的工具一律標註環境依賴，不存在時確認一次、改用替代、回報中明寫。</p>
+        </article>
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 每個 session 都在付費</div>
+          <h3>818 行規範全量載入</h3>
+          <p>修一個 JS bug 的 session 也要載入稽核接入七步驟；同一條規則重複三次；兩份文件對版本號的規定互相打架，弱模型讀到哪份算哪份。</p>
+          <p><b>改法：</b>三層重構——紅線留在本體一條一行、路由表「做 X 前必讀 Y」、細節抽到 docs/rules。大量讀取一律派子代理，主對話只進結論。</p>
+        </article>
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 「完成」靠自我申報</div>
+          <h3>沒有機器判準的驗證</h3>
+          <p>AI 說「已測試」，找不到測試輸出；說「已同步文件」，開檔沒有。返工的根因幾乎都在這裡。</p>
+          <p><b>改法：</b>verify-gate hook 擋收工；verifier／skeptic 雙審且看不到實作過程；驗收條件必須是「可執行指令 ＋ 可核對事實」，寫不出來就是我自己還沒想清楚。</p>
+        </article>
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 30 秒的誘惑</div>
+          <h3>假綠</h3>
+          <p>測試過不了時，「把測試預期改掉」只要 30 秒。被抓到一次，之後每個 session 都會退回逐步請示，所有人的效率一起陪葬。</p>
+          <p><b>改法：</b>過不了就標 skip ＋ 開依賴票，不准改測試充數、不准宣稱已驗證。自主 commit 的授權是靠這條攢出來的，push 至今仍要授權。</p>
+        </article>
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 額度撞頂</div>
+          <h3>AI 審查的隱形成本</h3>
+          <p>每次 push 都觸發 @claude 審查，審查跑在 GitHub Actions 上，幾天內連續撞到額度上限。</p>
+          <p><b>改法：</b>審查迴圈上限依變更檔數動態分 3／6／10 輪，硬上限 10；CI 分 Floor 與 Advisory，沒觸發任何 check 是合法狀態，不空等。</p>
+        </article>
+        <article class="lesson">
+          <div class="sym">SYMPTOM · 記憶體 95%</div>
+          <h3>關掉的對話，程序還在</h3>
+          <p>一個上午累積 12 個 claude 程序、4.8 GB，工作管理員只看得到一排同名程序，砍錯就砍掉正在跑的任務。</p>
+          <p><b>改法：</b>做了 <a href="https://github.com/Oliviaiii/agent-ledger" target="_blank" rel="noreferrer">agent-ledger</a>：把程序對到對話標題，看著標題決定；順便把散落的 session 歸納成含 token 統計的週報。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ BOUNDARIES & TOOLS -->
+  <section class="section" id="tools">
+    <div class="container two-col">
+      <div>
+        <div class="section-head" style="grid-template-columns:1fr;margin-bottom:16px">
+          <div><div class="index" style="margin-bottom:8px">05 / 界線</div><h2 style="font-size:22px">什麼事我從不交出去。</h2></div>
+        </div>
+        <ul style="color:var(--ink-2);font-size:15px;padding-left:1.2em">
+          <li><strong>定義成功。</strong>驗收條件、範圍與非目標由我寫；AI 可以幫我把它寫得更可執行，不能替我決定。</li>
+          <li><strong>對客戶與機關的承諾。</strong>報價、時程、能不能做、什麼時候上線，我自己說。</li>
+          <li><strong>正式環境的不可逆操作。</strong>合併到正式、清資料、發信給真人，一律我按下去或我逐項確認。</li>
+          <li><strong>品味與模糊題。</strong>制度補得了執行品質，補不了品味；需求本身模糊時，再多流程也只是把錯誤做得更工整。這種題我會回去問人。</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-head" style="grid-template-columns:1fr;margin-bottom:16px">
+          <div><div class="index" style="margin-bottom:8px">06 / 工具箱</div><h2 style="font-size:22px">現在手上的東西。</h2></div>
+        </div>
+        <div class="skill-groups">
+          <div><h3>Agents</h3><ul class="chips"><li class="chip accent">Claude Code（Desktop / CLI / Web）</li><li class="chip accent">Codex（Desktop / CLI）</li><li class="chip">Gemini CLI</li><li class="chip">GitHub Actions @claude 審查</li></ul></div>
+          <div><h3>MCP 與自動化</h3><ul class="chips"><li class="chip">GitHub MCP</li><li class="chip">Playwright</li><li class="chip">Chrome DevTools</li><li class="chip">Postgres MCP</li><li class="chip">Discord webhook</li><li class="chip">每日健康檢查 automation</li></ul></div>
+          <div><h3>制度</h3><ul class="chips"><li class="chip">CLAUDE.md / AGENTS.md</li><li class="chip">OpenSpec</li><li class="chip">Skills / Hooks</li><li class="chip">Subagents</li><li class="chip">git worktree</li><li class="chip">GitHub Projects 雙欄位看板</li></ul></div>
+          <div><h3>環境</h3><ul class="chips"><li class="chip">Windows + WSL</li><li class="chip">Docker</li><li class="chip">Laravel / PHP</li><li class="chip">Inertia / React</li><li class="chip">Next.js</li><li class="chip">Python</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container page-nav">
+      <a class="btn" href="work.html">← 看四個案例</a>
+      <a class="btn btn-primary" href="index.html#contact">聯絡我 →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container row">
+    <span>© <span id="year">2026</span> Olivia Lin · 數據截至 2026-09-05，由本機對話紀錄與 GitHub API 統計。</span>
+    <span><a href="index.html">履歷</a> · <a href="work.html">案例</a> · <a href="#main">回到頂端 ↑</a></span>
+  </div>
+</footer>
+</body>
+</html>
