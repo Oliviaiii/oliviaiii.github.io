@@ -42,7 +42,8 @@
         <h1>我不只會問 AI，<br>我設計它<em>怎麼工作</em>。</h1>
         <p class="lead">
           很多人會說「我有在用 AI」。這一頁想回答的是更具體的問題：AI 在我手上做了多少事、我怎麼讓它可靠、
-          什麼事我從不交出去。所有數字都來自我本機的對話紀錄與 GitHub，用腳本統計，不是印象。
+          什麼事我從不交出去。先講清楚分工：AI 是我的結對工程師，不是外包。2,282 個 commit 掛的是我的名字——
+          它出第一版，我看 diff、改細節、跑起來測、我負責。所有數字都來自我本機的對話紀錄與 git log，用腳本統計，不是印象。
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#harness">看我建立的制度 ↓</a>
@@ -55,7 +56,8 @@
         <dl>
           <div class="row"><dt>對話紀錄</dt><dd>本機 <span class="num">~/.claude</span> 與 <span class="num">~/.codex</span> 的 session 檔，共 <span class="num">2.33 GB</span>、514 份</dd></div>
           <div class="row"><dt>統計方式</dt><dd>Python 腳本逐檔解析：我的指令數、AI 回合數、每種工具呼叫次數、起訖時間</dd></div>
-          <div class="row"><dt>GitHub</dt><dd><span class="num">gh</span> CLI 搜尋 API：issue、留言、PR、commit（含公司私有倉庫）</dd></div>
+          <div class="row"><dt>GitHub</dt><dd><span class="num">gh</span> CLI 搜尋 API：issue、留言、PR（含公司私有倉庫）</dd></div>
+          <div class="row"><dt>commit</dt><dd>本機 14 個 git repo 的 log，比對我的 author email；排除 vendor、lock、詞典等非手寫檔</dd></div>
           <div class="row"><dt>沒算進去</dt><dd>網頁版與手機 App 發起的遠端 session、Gemini CLI、AI 產出的文件字數</dd></div>
         </dl>
       </aside>
@@ -77,7 +79,7 @@
         <div class="dash-grid">
           <div class="dash"><div class="v">294</div><div class="l">張 GitHub issue 由我開立</div></div>
           <div class="dash"><div class="v">293</div><div class="l">張留下驗收、決策或卡關留言</div></div>
-          <div class="dash"><div class="v">175</div><div class="l">個 commit（三個私有倉庫＋公開專案）</div></div>
+          <div class="dash"><div class="v">1,853</div><div class="l">個 commit 掛我的名字（14 個 repo，同期）</div></div>
           <div class="dash"><div class="v">95<small>天</small></div><div class="l">有 session 紀錄的工作日</div></div>
           <div class="dash"><div class="v">98%</div><div class="l">的 session 在週間 08–17 時開始</div></div>
         </div>
@@ -207,7 +209,7 @@
         <li><b>需求進 Issue<small>9 種表單 · 驗收條件寫進票</small></b><p>從客戶訊息、現場觀察或我自己用瀏覽器走一遍的體驗，寫成有情境、有驗收條件的票。需要老闆拍板的事先收斂成白話選項。</p><span class="who me">我 · 需求與判斷</span></li>
         <li><b>規格<small>OpenSpec · 104 個能力</small></b><p>功能有規格才能審；規格的每個核取項目之後都要對到測試。AI 幫我起草，我改到 RD 看得懂、驗收驗得了。</p><span class="who me">我定義 · AI 起草</span></li>
         <li><b>開工環境<small>/issue-start</small></b><p>一個指令建好 worktree、專屬資料庫、預覽網址，並把看板校正到「開發中」。多張票可以平行開，互不污染。</p><span class="who ai">AI 執行</span></li>
-        <li><b>實作<small>Claude Code / Codex</small></b><p>每個 session 從交接文件開始，環境限制寫成 MUST。大量讀取一律派子代理，主對話只收結論與檔案行號。</p><span class="who ai">AI 執行 · 我抽查</span></li>
+        <li><b>實作<small>我 + Claude Code / Codex</small></b><p>每個 session 從交接文件開始，環境限制寫成 MUST。AI 出第一版，我看 diff、改細節、跑起來測；大量讀取派子代理，主對話只收結論與檔案行號。</p><span class="who me">我 + AI 結對 · commit 是我的</span></li>
         <li><b>雙審<small>verifier + skeptic</small></b><p>驗收員逐條對照驗收條件附證據；對抗審查員預設「有問題」找 blocker。兩者都拿不到實作者的理由。</p><span class="who ai">AI 互審</span></li>
         <li><b>瀏覽器實測<small>Playwright / Chrome MCP</small></b><p>像使用者一樣點過一遍：下單、觸發通知、切 5 種螢幕寬度、讀回資料庫。122 個 session 做這件事。</p><span class="who me">我下條件 · AI 操作 · 我看結果</span></li>
         <li><b>PR 審查迴圈<small>/pr-review · @claude · CI</small></b><p>開 PR 觸發 AI 審查，讀意見→修正→再觸發，上限依變更檔數 3／6／10 輪。CI 分 Floor（紅燈必修）與 Advisory（只回報）。</p><span class="who ai">AI 迴圈 · 我看最後一輪</span></li>

@@ -212,6 +212,33 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
    Three-column "how I work"
    -------------------------------------------------------------------------- */
 .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.cols-4 .col-card { padding: 18px 16px 16px; }
+.cols-4 .col-card ul { font-size: 14px; }
+
+/* Development section (light chart variants) */
+.dev-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; }
+.chart-box.light { background: var(--surface); border-color: var(--line); }
+.chart-box.light .t { color: var(--ink-3); }
+.chart-box.light svg text { fill: var(--ink-3); }
+.chart-box.light svg .val { fill: var(--ink); }
+.chart-box.light svg .bar { fill: var(--accent); }
+.chart-box.light svg .bar.codex { fill: var(--line-2); }
+.chart-box.light svg line { stroke: var(--line-2); }
+.chart-box.light .legend { color: var(--ink-3); }
+.chart-box.light .mix-legend { color: var(--ink-2); }
+.chart-box.light .mix-legend b { color: var(--ink); }
+.mix.light .l1, .mix-legend.light .l1 { background: #0b6e63; }
+.mix.light .l2, .mix-legend.light .l2 { background: #3fb9a8; }
+.mix.light .l3, .mix-legend.light .l3 { background: #8fd3c7; }
+.mix.light .l4, .mix-legend.light .l4 { background: #e0a64a; }
+.mix.light .l5, .mix-legend.light .l5 { background: #efd39a; }
+.mix.light .l6, .mix-legend.light .l6 { background: #5b6a8a; }
+.mix.light .l7, .mix-legend.light .l7 { background: #9aa6c2; }
+.mix.light .l8, .mix-legend.light .l8 { background: #cfcfc8; }
+.feat-card .idx { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .06em; display: block; margin-bottom: 6px; }
+.feat-card h3 { font-size: 15.5px; margin-bottom: 6px; }
+.feat-card p { font-size: 14px; color: var(--ink-2); margin: 0; }
 .col-card { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 20px 20px 18px; }
 .col-card h3 { font-size: 17px; margin-bottom: 10px; }
 .col-card ul { padding-left: 1.1em; color: var(--ink-2); font-size: 14.5px; }
@@ -445,6 +472,8 @@ table.spec td code { background: var(--surface-2); padding: 1px 5px; border-radi
   .stat:nth-child(3n) { border-right: 0; }
   .stat:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
   .pipeline { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .dev-grid { grid-template-columns: 1fr; }
   .dash-grid { grid-template-columns: repeat(3, 1fr); }
   .project-grid { grid-template-columns: repeat(2, 1fr); }
   .project.wide { grid-column: span 2; }
@@ -455,7 +484,7 @@ table.spec td code { background: var(--surface-2); padding: 1px 5px; border-radi
 @media (max-width: 760px) {
   .container { padding: 0 18px; }
   .hero { padding: 36px 0 28px; }
-  .hero-grid, .cols-3, .case, .two-col, .case-detail .grid, .dash-row, .prompt-grid, .quote-grid, .lessons, .contact-box { grid-template-columns: 1fr; }
+  .hero-grid, .cols-3, .cols-4, .case, .two-col, .case-detail .grid, .dash-row, .prompt-grid, .quote-grid, .lessons, .contact-box { grid-template-columns: 1fr; }
   .hero-grid { gap: 28px; }
   .section { padding: 40px 0; }
   .section-head, .section-head.with-side { grid-template-columns: 1fr; gap: 6px; }

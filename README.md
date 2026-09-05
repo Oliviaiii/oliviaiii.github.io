@@ -16,7 +16,7 @@
 
 ## 數據來源
 
-`ai-workflow.html` 與首頁的 AI 數據，是用腳本掃描本機 `~/.claude/projects` 與 `~/.codex/sessions` 的對話紀錄統計（2026-03-30 – 2026-09-05），GitHub 數字來自 `gh api search/*`。統計腳本不在本倉庫；更新數據時直接改 HTML 內的數字與 SVG 長條高度。
+`ai-workflow.html` 與首頁的 AI 數據，是用腳本掃描本機 `~/.claude/projects` 與 `~/.codex/sessions` 的對話紀錄統計（2026-03-30 – 2026-09-05）；issue／留言數來自 `gh api search/issues`；commit 數與語言組成來自本機 14 個 git repo 的 `git log --all --author=<我的 email> --numstat`（排除 vendor、lock、詞典等非手寫檔，2025-04 – 2026-09）。統計腳本不在本倉庫；更新數據時直接改 HTML 內的數字與 SVG 長條高度。
 
 ## 本機預覽
 

@@ -43,6 +43,7 @@
         <li class="chip"><a href="#case-b2b" style="text-decoration:none">02 B2B 供貨 SaaS</a></li>
         <li class="chip"><a href="#case-ott" style="text-decoration:none">03 政府 OTT</a></li>
         <li class="chip"><a href="#case-erp" style="text-decoration:none">04 藥局 ERP 現場</a></li>
+        <li class="chip"><a href="#case-bot" style="text-decoration:none">05 LINE OA AI 客服</a></li>
         <li class="chip"><a href="#public" style="text-decoration:none">公開作品</a></li>
       </ul>
     </div>
@@ -60,12 +61,13 @@
             <li><span class="k">期間</span><span>2025.06 – 現在</span></li>
             <li><span class="k">型態</span><span>多租戶電商 CMS：前台網站＋後台管理＋API，多網域、多語系、多規格</span></li>
             <li><span class="k">技術</span><span>Laravel 12 / PHP 8.3、MySQL、GitHub Actions CI/CD、Docker</span></li>
-            <li><span class="k">團隊</span><span>我 ＋ 開發、設計；客戶端業務窗口</span></li>
+            <li><span class="k">團隊</span><span>主要開發者 1 位 ＋ 我（第二大貢獻者）＋ 設計；客戶端業務窗口</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
             <div class="r"><div class="v">12 站</div><div class="l">已整併到平台的客戶網站</div></div>
             <div class="r"><div class="v">30 → 7 天</div><div class="l">需求到網站上線</div></div>
             <div class="r"><div class="v">−70%</div><div class="l">內部回報與客服工單</div></div>
+            <div class="r"><div class="v">761</div><div class="l">個 commit：Blade／CSS／JS／PHP</div></div>
           </div>
         </aside>
         <div>
@@ -82,6 +84,15 @@
               <li><strong>設計 AI 開發制度。</strong>CLAUDE.md 憲章、docs/rules、skills（/issue-start、/commit、/pr-review、/diagnose）、驗收員與對抗審查員 agent、verify-gate hook——讓實作與審查可以大量交給 AI，但「什麼算做完」由制度與證據決定。詳見 <a href="ai-workflow.html">AI 工作方式</a>。</li>
               <li><strong>自己動手診斷。</strong>用 Search Console 分析新舊站索引問題、robots 與 sitemap；量測商品頁 TTFB 1.5–3 秒 vs. 列表 0.4–0.7 秒，找出根因是相關商品無上限查詢＋重複渲染 466 張卡片（748 KB HTML），寫成有數據的 Issue 而不是直接改碼。</li>
               <li><strong>親手驗收。</strong>用瀏覽器實測每一批票（購物車、物流、金流回呼、會員驗證、多規格編輯），正式站只建可辨識、可回復的測試訂單，卡關的票直接在 Issue 留言寫清楚環境、觀察值與解除條件。</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>我自己寫的部分（761 個 commit，2025.10 起）</h4>
+            <ul>
+              <li><strong>Widget preview-first 編輯器（#879）</strong>：三欄式、預覽優先；資料層、受控樣式參數、畫布與內容編輯；圖片／影片素材在預覽上直接新增、來源逐部各自決定；畫布依語系過濾。103 個 commit。</li>
+              <li><strong>主題 CSS 系統（#694／#695／#722）</strong>：主題歸零重寫，在 HTML 零改動下驗證主題可整套切換；首頁 widget 欄寬改由自訂屬性承載，讓主題用同層級選擇器覆寫。</li>
+              <li><strong>效能與修正</strong>：編輯器右欄改按需渲染，進頁 HTML 3.03 MB → 1.34 MB（#1138）；圖片使用登記漏建的補救（#1089）；公告欄顏色與動畫、物流設定介面、多語系素材、輪播等大小修正——修正 112、樣式 42、重構 53。</li>
+              <li><strong>文件與規格</strong>：77 檔使用手冊（含撰寫指南與同步契約）、OpenSpec 規格與變更提案、ChangeLog 規範。</li>
             </ul>
           </div>
           <div class="block">
@@ -111,17 +122,17 @@
         <aside class="aside">
           <div class="index eyebrow">CASE 02 · 上線</div>
           <h3>B2B 供貨 SaaS（LINE 生態）</h3>
-          <p class="muted small">產品規劃與上線負責 · 數位因子 dgFactor</p>
+          <p class="muted small">產品負責人 ＋ 主要開發者 · 數位因子 dgFactor</p>
           <ul class="kv">
-            <li><span class="k">期間</span><span>2026 – 現在（上線中）</span></li>
+            <li><span class="k">期間</span><span>2026.05 – 現在（上線中）</span></li>
             <li><span class="k">型態</span><span>供應商 ↔ 商家的 B2B / B2B2C 訂貨平台，入口為 LINE LIFF 與網頁</span></li>
             <li><span class="k">技術</span><span>Laravel 12 ＋ Inertia（React 19 / TS）＋ Tailwind、PostgreSQL、Pest</span></li>
             <li><span class="k">模組</span><span>M1–M11：賣場、商品、訂單、砍價改單、階梯價、通知、簽收、合作邀請…</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
-            <div class="r"><div class="v">14 份</div><div class="l">模組規格文件，依序交付</div></div>
-            <div class="r"><div class="v">60+</div><div class="l">張 issue 由我開票、驗收、結案</div></div>
-            <div class="r"><div class="v">80+</div><div class="l">條記憶規範：UI 準則與交付規則</div></div>
+            <div class="r"><div class="v">1,172</div><div class="l">個 commit，全 repo 的 91%</div></div>
+            <div class="r"><div class="v">2,804</div><div class="l">個 Pest 測試案例、140 個 migration</div></div>
+            <div class="r"><div class="v">14 份</div><div class="l">模組規格，80+ 條記憶規範</div></div>
           </div>
         </aside>
         <div>
@@ -137,6 +148,15 @@
               <li><strong>把摩擦點變成票。</strong>綁定通知流程卡在連動畫面、供應商不知道 rich menu 要貼什麼連結、商家查看賣場 404——我自己操作發現，開票、驗收、結案；能整批處理的就整批派（#139–#162 一次交付）。</li>
               <li><strong>教學影片自動化。</strong>做了 <a href="https://github.com/Oliviaiii" target="_blank" rel="noreferrer">tutorial-recorder</a>：用腳本操作系統、產生旁白與字幕、重點推近，一行指令產出 mp4 ＋ srt；功能改版重錄也是同一行指令。</li>
               <li><strong>上線前清單。</strong>舊站轉換的上線前必修清單、網址交換計畫、正式環境唯讀盤點，全部寫成文件進倉庫，讓下一個 session（或下一個人）照著做。</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>我自己寫的部分（1,172 個 commit，2026.05 起）</h4>
+            <ul>
+              <li><strong>從零開始。</strong>Docker 環境與 Laravel 骨架、140 個 migration、802 個 PHP 檔＋254 個 React 元件（約 19 萬行）；feat 423／fix 335／docs 147。</li>
+              <li><strong>模組 M1–M14。</strong>帳號與身份、供應商賣場與組織、買家與商家成員、合作夥伴關係、訂單（代客建單、配送派工、三種現場簽收）、LINE 通知、LIFF 介面、系統管理後台、商品結構與規格、買家等級與折扣、探索區、公開櫥窗、官方網站、方案與試用期。</li>
+              <li><strong>該硬的地方。</strong>金流回調防護（逾時 throw、鎖內冪等、權威 orderId 與金額）、LINE 憑證健康檢查（供應商一鍵檢查＋每日自動巡檢）、圖片目錄權限與部署清單、LIFF 內對話框限高的真因修正。</li>
+              <li><strong>發版閘門。</strong>2,804 個 Pest 測試案例、<code>tsc --noEmit</code>、production build 全綠才推；發版後驗 health endpoint 與實際路徑。</li>
             </ul>
           </div>
           <div class="block">
@@ -191,6 +211,7 @@
               <li><strong>把測試情境列完整。</strong>從一份範本 CSV 產出 37 個測試案例：正常、相容、覆蓋、缺漏、無效、空檔、檔名與邊界，逐案記錄同步結果、前台顯示與通知。</li>
               <li><strong>失敗也要看得懂。</strong>客戶收到的失敗通知必須說明：哪個檔案、何時、哪裡失敗、既有資料是否變動、下一步做什麼；例外堆疊留在伺服器日誌。</li>
               <li><strong>維運自動化。</strong>建每日 automation 檢查首頁是否正常、是否出現錯誤殼頁；協調弱點掃描、App 檢測與稽核文件的交付。</li>
+              <li><strong>可點擊原型。</strong>2026 年初做了新版網站與影音後台的可點擊原型（32 頁靜態 HTML，含生活體驗、會員、影音後台四頁 Demo），附前後台 UI／UX 設計理念文件，作為提案與討論的基準。</li>
             </ul>
           </div>
           <div class="block">
@@ -241,6 +262,53 @@
           <div class="block">
             <h4>這段為什麼重要</h4>
             <p>現在我做產品時的直覺——先看使用者卡在哪、驗收要自己走一遍、失敗訊息要讓人知道下一步——都是這段養成的。我不是猜使用者怎麼工作，是真的站在旁邊看過。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ CASE 05 -->
+  <section class="section" id="case-bot">
+    <div class="container case-detail" style="padding:0;border:0">
+      <div class="grid">
+        <aside class="aside">
+          <div class="index eyebrow">CASE 05 · 12 天</div>
+          <h3>LINE 官方帳號 AI 客服（RAG）</h3>
+          <p class="muted small">規劃並獨立開發 · 數位因子 dgFactor</p>
+          <ul class="kv">
+            <li><span class="k">期間</span><span>2026.06.18 – 06.29（Phase 1）</span></li>
+            <li><span class="k">型態</span><span>CMS 平台的官方 LINE OA 客服：文件問答（RAG）＋公告推播，獨立於主系統的平台級服務</span></li>
+            <li><span class="k">技術</span><span>Python 3.12 / FastAPI（async）、PostgreSQL＋pgvector、Redis＋Arq、SQLAlchemy＋Alembic、自架 BGE-M3 embedding 與 reranker、Gemini Flash 生成（可替換）</span></li>
+            <li><span class="k">文件</span><span>SRS、SAD、SDD、RAG 規劃；OpenSpec changes</span></li>
+          </ul>
+          <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
+            <div class="r"><div class="v">87</div><div class="l">個 commit，12 天</div></div>
+            <div class="r"><div class="v">15K 行</div><div class="l">Python，34 個模組檔</div></div>
+            <div class="r"><div class="v">多租戶</div><div class="l">控制平面 DB＋每租戶連線 registry</div></div>
+          </div>
+        </aside>
+        <div>
+          <div class="block">
+            <h4>情境</h4>
+            <p>客戶在 LINE 問「後台這個怎麼設定」，客服要翻手冊回答，重複問題吃掉時間；也需要一個能推播公告、把沒回答到的問題收回來的入口。這是我在 Threads 上「AI 客服開發」那篇 build-in-public 文章的本體。</p>
+          </div>
+          <div class="block">
+            <h4>我做的</h4>
+            <ul>
+              <li><strong>先寫清楚再動手。</strong>Phase 1 SRS、SAD、SDD 與 OpenSpec 變更提案（change-1 骨架與 webhook 閘道、change-2 文件同步、change-3 RAG 問答），每一段照提案交付。</li>
+              <li><strong>骨架與閘道。</strong>FastAPI 服務、LINE webhook 閘道、最小後台（JWT 登入＋RBAC＋audit＋對話檢視＋指標）、DLQ＋告警＋人工重跑。</li>
+              <li><strong>知識同步與問答。</strong>GitHub App 以 Git Trees＋Blobs 只抓 <code>docs/manual</code> 子樹做快照；自架 BGE-M3 embedding（HuggingFace TEI）；FAQ RAG 問答、對話延續、Gemini 自動重試、分類失敗改回「系統忙」。</li>
+              <li><strong>後台與多租戶。</strong>未命中問題回報、後台設定畫面、機密加密、fallback 分類；控制平面 DB、租戶資料模型、每租戶連線 registry、多庫遷移工具、add-tenant runbook。</li>
+              <li><strong>部署。</strong>改用 Hestia＋打 tag 自動部署（不用 Docker），寫正式環境部署交接與「從零把平台跑起來」的伺服器 runbook；清掉多租戶大改留下的文件債。</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>結果</h4>
+            <ul>
+              <li>12 天內從規格到可部署的 Phase 1：RAG 問答、公告推播、未命中回報、多租戶與正式環境部署流程。</li>
+              <li>整個過程有 SRS／SAD／SDD 與 OpenSpec 對照，接手的人不用讀對話紀錄。</li>
+            </ul>
           </div>
         </div>
       </div>
