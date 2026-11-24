@@ -12,6 +12,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     BaseDocTemplate,
+    Flowable,
     Frame,
     HRFlowable,
     ListFlowable,
@@ -35,6 +36,59 @@ ACCENT = colors.HexColor("#087F73")
 ACCENT_SOFT = colors.HexColor("#E8F5F2")
 LINE = colors.HexColor("#D9DDDC")
 PAPER = colors.white
+
+
+class LinkChip(Flowable):
+    """Compact, clickable contact link with a small vector icon."""
+
+    def __init__(self, label: str, url: str, icon: str, width: float) -> None:
+        super().__init__()
+        self.label = label
+        self.url = url
+        self.icon = icon
+        self.width = width
+        self.height = 8 * mm
+
+    def draw(self) -> None:
+        canvas = self.canv
+        canvas.saveState()
+        canvas.setStrokeColor(colors.HexColor("#C8D5D2"))
+        canvas.setFillColor(colors.HexColor("#F7FAF9"))
+        canvas.roundRect(0, 0, self.width, self.height, 3 * mm, stroke=1, fill=1)
+        icon_x = 4.6 * mm
+        icon_y = self.height / 2
+        canvas.setStrokeColor(ACCENT)
+        canvas.setFillColor(ACCENT)
+        canvas.setLineWidth(0.75)
+
+        if self.icon == "mail":
+            canvas.roundRect(icon_x - 2.2 * mm, icon_y - 1.55 * mm, 4.4 * mm, 3.1 * mm, 0.5 * mm, stroke=1, fill=0)
+            canvas.line(icon_x - 2 * mm, icon_y + 1.1 * mm, icon_x, icon_y - 0.3 * mm)
+            canvas.line(icon_x + 2 * mm, icon_y + 1.1 * mm, icon_x, icon_y - 0.3 * mm)
+        elif self.icon == "web":
+            canvas.circle(icon_x, icon_y, 2.1 * mm, stroke=1, fill=0)
+            canvas.ellipse(icon_x - 1.05 * mm, icon_y - 2.1 * mm, icon_x + 1.05 * mm, icon_y + 2.1 * mm, stroke=1, fill=0)
+            canvas.line(icon_x - 2 * mm, icon_y, icon_x + 2 * mm, icon_y)
+        elif self.icon == "linkedin":
+            canvas.roundRect(icon_x - 2.2 * mm, icon_y - 2.2 * mm, 4.4 * mm, 4.4 * mm, 0.6 * mm, stroke=0, fill=1)
+            canvas.setFillColor(PAPER)
+            canvas.setFont("Helvetica-Bold", 6.8)
+            canvas.drawCentredString(icon_x, icon_y - 2.1, "in")
+        elif self.icon == "threads":
+            canvas.circle(icon_x, icon_y, 2.2 * mm, stroke=1, fill=0)
+            canvas.setFont("Helvetica-Bold", 6.6)
+            canvas.drawCentredString(icon_x, icon_y - 2.2, "@")
+        else:
+            canvas.circle(icon_x, icon_y, 2.2 * mm, stroke=0, fill=1)
+            canvas.setFillColor(PAPER)
+            canvas.setFont("Helvetica-Bold", 5.6)
+            canvas.drawCentredString(icon_x, icon_y - 1.9, "GH")
+
+        canvas.setFillColor(INK)
+        canvas.setFont("ResumeSans", 7.7)
+        canvas.drawString(9 * mm, icon_y - 2.5, self.label)
+        canvas.linkURL(self.url, (0, 0, self.width, self.height), relative=1)
+        canvas.restoreState()
 
 
 def register_fonts() -> None:
@@ -243,22 +297,36 @@ def draw_page(canvas, doc) -> None:
 def build_story(s: dict[str, ParagraphStyle]) -> list:
     story: list = []
 
+    def chip_pair(left: LinkChip, right: LinkChip) -> Table:
+        pair = Table([[left, right]], colWidths=[35 * mm, 35 * mm])
+        pair.setStyle(TableStyle([
+            ("LEFTPADDING", (0, 0), (-1, -1), 0),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 1 * mm),
+            ("TOPPADDING", (0, 0), (-1, -1), 0),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ]))
+        return pair
+
     header_left = [
         Paragraph("林芷筠 <font size=12 color='#5F646B'>Olivia Lin</font>", s["name"]),
         Paragraph("產品／專案經理 · PRODUCT BUILDER", s["role"]),
+        Spacer(1, 2 * mm),
+        Paragraph("新北市 · 0988-796-571", s["small"]),
     ]
-    header_right = Paragraph(
-        "<br/>".join(
-            [
-                link("rainy57091224@gmail.com", "mailto:rainy57091224@gmail.com"),
-                "0988-796-571 · 新北市板橋區",
-                link("個人網站", "https://oliviaiii.github.io/"),
-                link("GitHub", "https://github.com/Oliviaiii") + " · " + link("LinkedIn", "https://www.linkedin.com/in/oliviaiii1224chihyun/"),
-                link("Threads @pmenance.manager", "https://www.threads.com/@pmenance.manager"),
-            ]
-        ),
-        s["contact"],
+    header_right = Table(
+        [
+            [LinkChip("rainy57091224@gmail.com", "mailto:rainy57091224@gmail.com", "mail", 70 * mm)],
+            [chip_pair(LinkChip("個人網站", "https://oliviaiii.github.io/", "web", 34 * mm), LinkChip("GitHub", "https://github.com/Oliviaiii", "github", 34 * mm))],
+            [chip_pair(LinkChip("LinkedIn", "https://www.linkedin.com/in/oliviaiii1224chihyun/", "linkedin", 34 * mm), LinkChip("Threads", "https://www.threads.com/@pmenance.manager", "threads", 34 * mm))],
+        ],
+        colWidths=[70 * mm],
     )
+    header_right.setStyle(TableStyle([
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 1.2 * mm),
+    ]))
     header = Table([[header_left, header_right]], colWidths=[100 * mm, 70 * mm])
     header.setStyle(
         TableStyle(
@@ -275,7 +343,7 @@ def build_story(s: dict[str, ParagraphStyle]) -> list:
 
     story.append(
         Paragraph(
-            "我是 Olivia，同事都叫我 Oli。從第一線系統支援走進產品管理，目前持續朝 Product Builder 發展。擅長理解使用者、釐清需求，並將混亂的問題整理成可執行、可驗收的成果；也善用 AI 協作，推進產品從規劃到落地。",
+            "我是 Olivia，同事都叫我 Oli。從餐飲現場、藥局系統支援一路走進產品管理，現在持續往 Product Builder 發展。我擅長理解使用者與商業流程，把模糊需求整理成團隊能執行、能驗收的產品方案，也能搭配 AI 閱讀 Codebase、製作原型並參與實作，讓產品真正落地。",
             s["intro"],
         )
     )
@@ -302,35 +370,55 @@ def build_story(s: dict[str, ParagraphStyle]) -> list:
     )
     story.extend([tags, Spacer(1, 1 * mm)])
 
-    story.extend(section("工作經驗", s))
+    story.extend(section("目前角色", s))
     story.append(role_header("產品／專案經理｜Product Builder", "數位因子網路科技有限公司", "2025.06 至今", s, "跨前端、後端與 UI/UX 團隊 · ISO 27001 管理框架"))
     story.append(Spacer(1, 2 * mm))
-    story.append(Paragraph("除了需求與排程管理，也直接參與規格設計、程式實作、Code Review、驗收與發版，持續從 PM 往能親手完成產品的 Product Builder 發展。", s["base"]))
+    story.append(Paragraph("在同一個角色中負責多條產品線。我的工作不只停在 PRD 與排程，也包含系統流程、介面原型、部分程式實作、Code Review、驗收與發版協調；需要時會先親手做出可操作版本，再和工程團隊一起收斂成正式產品。", s["base"]))
 
-    story.append(Paragraph("shinvo-shop 多租戶電商建站平台", s["project"]))
+    product_cards = [
+        (
+            "shinvo-shop｜多租戶電商平台",
+            "主導從「一案一站」走向共用平台。負責判斷共用能力與客製邊界，規劃訂單、付款、物流、庫存、優惠、會員、通知與後台編輯體驗，並參與部分前後台功能落地。",
+        ),
+        (
+            "LINERP｜徠能 B2B 供貨 SaaS",
+            "重新梳理供應商與商家的合作、商品、訂貨、配送、簽收與對帳流程。結合過去餐飲叫貨經驗，透過自然語言與 AI 協作重構系統，正式部署由工程師接手。",
+        ),
+        (
+            "LINE OA AI 客服｜獨立 RAG 產品",
+            "以 LINERP 官方帳號作為實際案例，直接同步 Repository 文件，避免重複維護知識。規劃地端 DGX 模型、檢索與回答邊界，以及多 Bot 隔離、回饋與稽核機制。",
+        ),
+        (
+            "政府 OTT｜影音平台維運與交付",
+            "接手網站、App、CMS、影音播放與資料介接需求，負責釐清、規格、排程、驗收及上線；同時協調機關、內部團隊與供應商，整理資安檢測及稽核交付。",
+        ),
+    ]
+    card_rows = []
+    for row_start in range(0, len(product_cards), 2):
+        row = []
+        for title, description in product_cards[row_start:row_start + 2]:
+            row.append([Paragraph(title, s["project"]), Paragraph(description, s["base"])])
+        card_rows.append(row)
+    cards = Table(card_rows, colWidths=[83.5 * mm, 83.5 * mm], hAlign="LEFT")
+    cards.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#F6F8F7")),
+        ("BOX", (0, 0), (-1, -1), 0.5, LINE),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, LINE),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4 * mm),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4 * mm),
+        ("TOPPADDING", (0, 0), (-1, -1), 3 * mm),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3 * mm),
+    ]))
+    story.extend([Spacer(1, 1 * mm), cards])
+
+    story.append(Paragraph("我的工作方式", s["project"]))
     story.append(
         bullet_list(
             [
-                "主導公司從「一案一站、各自維護」轉型為共用後台、前台可依品牌切換主題與 CSS 的多租戶平台。",
-                "判斷共用能力與品牌客製需求，設計可設定、可重複使用的產品流程。",
-                "規劃並參與訂單、付款、物流、庫存、優惠、會員與通知等電商核心功能。",
-                "實作 Preview-first 三欄式 Widget 編輯器、主題 CSS 架構與多語系素材管理。",
-                "建立需求、驗收、發版與正式環境追蹤流程，讓產品變更可回溯、可稽核。",
-            ],
-            s["base"],
-            compact=True,
-        )
-    )
-
-    story.append(Paragraph("LINERP（徠能 B2B 供貨 SaaS）", s["project"]))
-    story.append(
-        bullet_list(
-            [
-                "重新設計並重構既有供貨系統，整合供應商與商家的商品、合作、訂單、配送、簽收與對帳流程。",
-                "結合餐飲營運與供應商叫貨經驗，重新定義商業流程、資料關係與操作介面。",
-                "透過自然語言與 AI 協作完成系統重構，工程師負責正式環境部署。",
-                "將訂單、付款與配送狀態分開管理，補強金流驗簽、冪等處理及租戶資料隔離。",
-                "優化 LIFF 登入、手機操作、LINE 通知與新舊系統切換流程。",
+                "把現場語言翻成清楚的流程、規格與 Issue，也把技術限制翻回利害關係人能做決策的資訊。",
+                "建立 GitHub Projects、Issue、PR、PRD、SOP 與版本紀錄，讓需求到上線可以追溯。",
+                "讓 AI 協助探索、原型、實作與審查；產品方向、風險判斷與最終驗收仍由我負責。",
             ],
             s["base"],
             compact=True,
@@ -339,43 +427,15 @@ def build_story(s: dict[str, ParagraphStyle]) -> list:
 
     story.append(PageBreak())
 
-    story.append(Paragraph("LINE OA AI 客服平台（RAG）", s["project"]))
+    story.extend(section("經歷與領域背景", s))
+    story.append(role_header("產品／專案顧問（外部合作）", "藥局系統軟體公司 · 每週 20 小時 · 全遠端", "2025.10 至 2026.01", s))
+    story.append(Spacer(1, 2 * mm))
     story.append(
         bullet_list(
             [
-                "規劃並落地獨立的 LINE 官方帳號 AI 客服產品，LINERP 官方 LINE OA 為目前實際接入案例。",
-                "直接同步產品 Repository 內的操作文件，避免額外維護另一份客服知識庫。",
-                "使用地端 DGX 模型完成問句改寫、Embedding、Rerank 與回答生成。",
-                "設計低信心不臆測、模糊問題先釐清、系統異常與知識未命中分流等回答邊界。",
-                "建立多 Bot 隔離、後台設定、知識同步、問題回收、錯誤診斷與稽核紀錄。",
-            ],
-            s["base"],
-            compact=True,
-        )
-    )
-
-    story.append(Paragraph("政府 OTT 影音平台", s["project"]))
-    story.append(
-        bullet_list(
-            [
-                "接手政府影音串流平台的長期維運與產品需求，協調機關、內部團隊及外部供應商完成開發與交付。",
-                "負責需求釐清、規格與報價、排程協調、驗收、上線及後續追蹤。",
-                "同時處理網站、App、CMS、影音播放、資料介接與內容營運需求。",
-                "整理弱點掃描、App 檢測、修正證據、營運報告與稽核文件。",
-                "將正式環境異常、資安風險與相容性問題轉成可重現、可追蹤、可驗收的工作項目。",
-            ],
-            s["base"],
-            compact=True,
-        )
-    )
-
-    story.append(Paragraph("工作方式", s["project"]))
-    story.append(
-        bullet_list(
-            [
-                "建立 GitHub Projects、Issue 表單、PR 模板、PRD、SOP 與 ChangeLog 規範，讓需求、開發、驗收與發版都有完整紀錄。",
-                "使用 Claude Code、Codex 等 AI 工具並行推進產品工作，由 AI 協助實作、測試與審查，我負責產品判斷、責任邊界與最終驗收。",
-                "自行開發 agent-ledger 管理 AI coding agent 的執行狀態、任務紀錄與工作報告，讓 AI 協作成果可以被追蹤與交接。",
+                "運用調劑、健保申報、進銷存與現場設備經驗，協助全新雲端藥局系統釐清流程、敏感資料、法規及資安邊界。",
+                "把現場需求轉成工程團隊可執行、可驗收的規格，並檢視既有工單與調劑作業的流程斷點。",
+                "重整 Repository 權責、Gitflow、需求審查與版本管理，搭配 ISO 27001 要求建立可追溯的協作制度。",
             ],
             s["base"],
             compact=True,
@@ -383,89 +443,41 @@ def build_story(s: dict[str, ParagraphStyle]) -> list:
     )
 
     story.extend([Spacer(1, 2 * mm), HRFlowable(width="100%", thickness=0.5, color=LINE, spaceAfter=3 * mm)])
-    story.append(role_header("產品／專案顧問（外部合作）", "藥局系統軟體公司 · 每週 20 小時 · 全遠端", "2025.10 至 2026.01", s))
+    story.append(role_header("業務工程師（FAE）｜系統導入與技術顧問", "樺穎資訊科技顧問有限公司", "2023.11 至 2024.12", s, "藥局資訊系統 · ERP · 健保申報 · 現場設備"))
     story.append(Spacer(1, 2 * mm))
     story.append(
         bullet_list(
             [
-                "將過去服務藥局累積的調劑、健保申報、進銷存及現場設備經驗，轉化為工程團隊可執行、可驗收的需求。",
-                "協助釐清全新雲端系統的敏感資料、法規與資安邊界，以及設備串接、斷線備援和現場流程。",
-                "重整 Repository 權責、Gitflow、需求審查與版本管理，建立從需求到發布皆可追蹤的協作流程。",
-                "結合 ISO 27001 導入經驗，整理權限、變更、審查與紀錄規範，讓開發流程保留可追溯的稽核證據。",
-                "檢視既有工單與調劑作業流程，找出需求、開發及現場操作之間的斷點並提出改善方案。",
+                "擔任藥局第一線技術窗口，從新店建置、系統導入、操作教學，到 ERP 升級、健保申報與現場異常排除皆直接參與。",
+                "處理主機、網路、周邊設備與系統串接，並透過資料庫、Log、庫存及交易資料定位操作、設定、資料或程式問題。",
+                "將客戶痛點整理成重現步驟與工程需求，再把技術方案轉成使用者能理解的操作方式；同時協調資料轉換、跨系統介接與上線條件。",
             ],
             s["base"],
             compact=True,
         )
     )
-
-    story.append(PageBreak())
-
-    story.extend(section("第一線系統導入與技術顧問經驗", s))
-    story.append(role_header("業務工程師（FAE）｜系統導入與技術顧問", "樺穎資訊科技顧問有限公司", "2023.11 至 2024.12", s, "藥局資訊系統 · ERP · 健保申報 · 現場設備"))
+    story.extend([Spacer(1, 2 * mm), HRFlowable(width="100%", thickness=0.5, color=LINE, spaceAfter=3 * mm)])
+    story.append(role_header("餐飲營運｜第一線服務與管理", "居酒屋、餐酒館、熱炒店、酒吧與早餐店", "2018 至 2023", s))
     story.append(Spacer(1, 2 * mm))
-    story.append(Paragraph("擔任藥局客戶的第一線技術窗口，工作涵蓋需求訪談、售前支援、系統導入、操作教學、問題排除與跨部門協調，同時累積完整的藥局營運與調劑系統 Domain Knowledge。", s["base"]))
+    story.append(Paragraph("從第一線接待、內場備料與出餐，到成本控管、供應商叫貨、人員管理及現場調度皆有實務經驗。這段經歷讓我熟悉真實營運限制，也建立在高壓環境中判斷優先順序、處理突發狀況與理解使用者感受的能力。", s["base"]))
 
-    fae_groups = [
-        (
-            "客戶現場與需求釐清",
-            [
-                "深入藥局現場了解調劑、進銷存、銷售、庫存與健保申報流程，協助使用者排除操作問題並改善工作方式。",
-                "將客戶描述的現場狀況整理成重現步驟與工程需求，再把技術方案轉譯成客戶能理解的操作說明。",
-                "區分問題來自操作、設定、資料、設備、網路或程式缺陷，協助團隊找到真正原因。",
-            ],
-        ),
-        (
-            "系統導入與教育訓練",
-            [
-                "從新藥局建置開始，負責系統安裝、資料準備、權限與環境設定、設備串接及操作教學。",
-                "協助 ERP 升級、健保藥價調整、健保申報與系統介接，確保調劑、處方箋及銷售流程正常運作。",
-                "依不同使用者的工作內容安排教育訓練，協助藥師與門市人員熟悉系統。",
-            ],
-        ),
-        (
-            "系統、資料與設備問題排除",
-            [
-                "處理主機、網路、印表機、掃描設備及周邊硬體的安裝、串接、故障判斷與備品更換。",
-                "透過資料庫、系統 Log、庫存與交易資料定位問題，處理資料修正、備份、轉移及環境更換。",
-                "排查健保連線、申報資料、雲端控制軟體驗證及診所與藥局間的資料整合問題。",
-                "建立可追蹤的問題紀錄與排錯方式，讓現場、客服與工程團隊能接續處理。",
-            ],
-        ),
-        (
-            "跨部門專案執行",
-            [
-                "參與系統轉換與資料移轉專案，協調客戶、工程團隊及內部業務，確認資料格式、轉換結果與上線條件。",
-                "協助物流與網路商城訂單串接，將人工轉單流程改為系統自動處理。",
-                "整理客戶共通需求與高頻問題，作為後續產品調整、功能規劃與教育文件的依據。",
-            ],
-        ),
-    ]
-    for title, items in fae_groups:
-        story.append(Paragraph(title, s["project"]))
-        story.append(bullet_list(items, s["base"], compact=True))
-
-    story.extend(section("專長", s))
+    story.extend(section("核心能力", s))
     skill_groups = [
         (
-            "產品規劃與需求落地",
-            "使用者訪談、需求釐清、流程盤點與問題定義；PRD／SRS／SAD／SDD、Roadmap、SOP 與驗收規格；將複雜需求拆分成可執行、可測試、可追蹤的 Issue；規劃狀態、例外、權限、通知與回退流程；區分平台共用能力與客戶客製需求。",
+            "產品與需求",
+            "使用者訪談、需求釐清、流程盤點、PRD／SRS、Roadmap、SOP 與驗收規格；將複雜問題拆成可執行、可測試、可追蹤的 Issue。",
         ),
         (
-            "AI 協作與 Product Building",
-            "使用 Claude Code、Codex CLI、Gemini CLI 閱讀 Codebase、實作功能、Code Review 與驗收；以自然語言建立前端原型、POC 與可操作 Demo；使用多 Agent 與 Git Worktree 平行開發及交叉審查；設計 AI 開發規則、Skills、驗收 Agent 與自動檢查流程。",
+            "系統與商業流程",
+            "電商訂單、付款、物流、庫存、優惠與會員；多租戶、狀態機、Webhook、冪等與例外流程；LINE、金流、物流及第三方 API 串接。",
         ),
         (
-            "系統分析與技術協作",
-            "電商訂單、付款、物流、庫存、優惠、會員與通知流程；多租戶資料隔離、自訂網域、權限與品牌客製架構；Webhook 驗簽、冪等處理、競態條件、失敗重試與狀態機；LINE Login、LIFF、Messaging API、LINE Pay、綠界與第三方 API 串接。",
+            "AI 協作與建置",
+            "Claude Code、Codex CLI、Gemini CLI；閱讀 Codebase、前端原型、POC、實作、Code Review 與驗收；Repository 文件同步、RAG、地端 DGX 模型與多 Bot 隔離。",
         ),
         (
-            "RAG 與 AI 客服產品",
-            "Repository 文件同步、知識切片、Embedding、向量檢索與 Rerank；低信心 Fallback、模糊問題釐清、未命中回收及題外問題分流；地端 DGX 模型服務；多 Bot 資料隔離、知識同步、錯誤診斷、稽核紀錄與用量管理。",
-        ),
-        (
-            "專案治理、資安與合規",
-            "GitHub Projects、Issue Forms、PR 模板、分支策略與版本管理；需求、開發、驗收、發版及正式環境可追溯流程；Root Cause Analysis、技術 Spike、風險盤點與回退計畫；ISO 27001、政府標案、弱點掃描、App 檢測與稽核證據。",
+            "治理與合規",
+            "GitHub Projects、Issue Forms、PR 模板、Gitflow 與版本管理；ISO 27001、政府標案、弱點掃描、App 檢測、風險盤點與稽核證據。",
         ),
     ]
     skill_rows = []
@@ -486,35 +498,9 @@ def build_story(s: dict[str, ParagraphStyle]) -> list:
     )
     story.append(skill_table)
 
-    story.extend(section("工具、領域與學歷", s))
-    details = [
-        [Paragraph("產品與協作", s["skill"]), Paragraph("GitHub、GitHub Actions、Git Worktree、Figma、Mermaid、Jira、Notion", s["base"])],
-        [Paragraph("資料與環境", s["skill"]), Paragraph("MySQL、PostgreSQL／pgvector、AWS S3、Google Cloud Storage、Google Analytics、Search Console", s["base"])],
-        [Paragraph("領域知識", s["skill"]), Paragraph("電商平台、B2B 供貨 SaaS、LINE 生態、RAG 客服、政府 OTT、藥局 ERP、健保申報與餐飲營運", s["base"])],
-        [Paragraph("語言", s["skill"]), Paragraph("中文（母語）、台語（精通）、英文（中等）", s["base"])],
-        [Paragraph("學歷", s["skill"]), Paragraph("國立臺北大學｜公共行政與政策學系｜2019.09 至 2021.11", s["base"])],
-    ]
-    details_table = Table(details, colWidths=[42 * mm, 128 * mm])
-    details_table.setStyle(
-        TableStyle(
-            [
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 3 * mm),
-                ("TOPPADDING", (0, 0), (-1, -1), 2.2 * mm),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 2.2 * mm),
-                ("LINEBELOW", (0, 0), (-1, -2), 0.45, LINE),
-            ]
-        )
-    )
-    story.append(details_table)
-    story.append(Spacer(1, 6 * mm))
-    story.append(
-        Paragraph(
-            "完整案例、AI 工作方式與可操作作品：" + link("https://oliviaiii.github.io/", "https://oliviaiii.github.io/"),
-            s["base"],
-        )
-    )
+    story.extend([Spacer(1, 2 * mm), HRFlowable(width="100%", thickness=0.8, color=INK, spaceAfter=2 * mm)])
+    story.append(Paragraph("<b>工具</b>　GitHub／GitHub Actions／Git Worktree／Figma／Mermaid／Jira／Notion／MySQL／PostgreSQL／Docker／AWS S3／Google Cloud Storage", s["small"]))
+    story.append(Paragraph("<b>語言與學歷</b>　中文（母語）／台語（精通）／英文（中等）　·　國立臺北大學 公共行政與政策學系", s["small"]))
     return story
 
 

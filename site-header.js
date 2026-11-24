@@ -21,9 +21,9 @@
       '<a class="site-brand" href="index.html">林芷筠 <small>Olivia Lin · Product Builder</small></a>' +
       '<nav class="site-nav" aria-label="主導覽">' +
         navLinks +
-        '<a class="site-mobile-resume" href="林芷筠中文履歷.pdf?v=20261124-2" download>PDF 履歷</a>' +
+        '<a class="site-mobile-resume" href="林芷筠中文履歷.pdf?v=20261124-3" download>PDF 履歷</a>' +
       '</nav>' +
-      '<a class="site-header-cta" href="林芷筠中文履歷.pdf?v=20261124-2" download>PDF 履歷</a>' +
+      '<a class="site-header-cta" href="林芷筠中文履歷.pdf?v=20261124-3" download>PDF 履歷</a>' +
     '</div>';
 
   var mobileLinks = links.map(function (link) {
@@ -38,7 +38,7 @@
     'afterend',
     '<nav class="mobile-bottom-nav" aria-label="手機主導覽">' +
       mobileLinks +
-      '<a data-mobile-key="resume" href="林芷筠中文履歷.pdf?v=20261124-2" download>' +
+      '<a data-mobile-key="resume" href="林芷筠中文履歷.pdf?v=20261124-3" download>' +
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.75h8l4 4V21.25H6zM14 2.75v4h4M9 12h6M9 16h6"/></svg>' +
         '<span>PDF</span>' +
       '</a>' +
