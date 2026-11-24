@@ -20,7 +20,8 @@
 
 .ai-new-hero { padding: clamp(130px, 14vw, 210px) 0 84px; overflow: hidden; }
 .ai-new-hero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(360px, .7fr); gap: clamp(64px, 10vw, 150px); align-items: end; }
-.ai-new-hero h1 { max-width: 900px; margin: 28px 0 0; font-size: clamp(64px, 8.2vw, 122px); font-weight: 500; line-height: .92; letter-spacing: -.07em; }
+.ai-new-hero h1 { max-width: 900px; margin: 28px 0 0; font-size: clamp(56px, 6.2vw, 88px); font-weight: 500; line-height: .98; letter-spacing: -.065em; }
+.ai-new-hero h1 > span { display: block; }
 .ai-new-hero h1 em { color: var(--ai-green); font-style: normal; }
 .ai-hero-copy { padding-bottom: 4px; }
 .ai-hero-copy > p { margin: 0; color: #555b60; font-size: 17px; line-height: 1.85; }
@@ -112,7 +113,8 @@
 
 @media (max-width: 760px) {
   .ai-new-hero { padding: 112px 0 70px; }
-  .ai-new-hero h1 { font-size: clamp(54px, 15vw, 76px); }
+  .ai-new-hero h1 { font-size: clamp(44px, 12vw, 58px); line-height: 1.02; }
+  .ai-new-hero h1 em { display: block; }
   .ai-new-hero-grid { gap: 54px; }
   .hero-manifesto { margin-top: 72px; }
   .mirror-quote { margin-bottom: 54px; }
@@ -133,6 +135,10 @@
   .system-grid article:nth-child(odd),
   .system-grid article:nth-child(even) { padding: 30px 0 36px; border-right: 0; }
   .conclusion-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (min-width: 761px) {
+  .ai-new-hero h1 > span { white-space: nowrap; }
 }
 
 @media (max-width: 480px) {
