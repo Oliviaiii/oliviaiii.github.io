@@ -74,7 +74,8 @@
 .home-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-top: 34px; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 16px 22px; }
 .social-link { display: inline-flex; align-items: center; gap: 7px; }
-.brand-icon { width: 18px; height: 18px; flex: 0 0 18px; }
+.brand-icon { width: 18px; height: 18px; max-width: 18px; flex: 0 0 18px; }
+.hero-links svg.brand-icon { display: block; width: 18px !important; height: 18px !important; }
 .threads-icon { display: inline-grid; place-items: center; font: 600 18px/1 var(--sans); text-decoration: none; }
 .contact-pill {
   display: inline-flex;
