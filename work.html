@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,41 +12,46 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="inner-pages.css?v=1">
   <script src="script.js?v=4" defer></script>
 </head>
-<body>
+<body class="inner-page work-page">
 <a class="skip-link" href="#main">跳到主要內容</a>
 
 <header class="site-header">
   <div class="container header-row">
-    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · PM</small></a>
+    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · Product Builder</small></a>
     <nav class="nav" aria-label="主導覽">
-      <a href="index.html">履歷</a>
+      <a href="index.html">首頁</a>
       <a href="work.html" aria-current="page">案例</a>
       <a href="ai-workflow.html">AI 工作方式</a>
-      <a href="index.html#contact">聯絡</a>
+      <a href="index.html#connect">聯絡</a>
     </nav>
     <a class="btn btn-sm header-cta" href="林芷筠中文履歷.pdf" download>PDF 履歷</a>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero" style="padding-bottom:24px">
+  <section class="hero detail-hero work-hero">
     <div class="container">
-      <p class="eyebrow"><b>案例</b> · 五個實際專案</p>
-      <h1 style="font-size:clamp(26px,3.6vw,36px)">我處理的，是系統與人之間的落差。</h1>
-      <p class="lead">從平台轉型、政府標案、SaaS 上線到第一線支援，我先看清楚現場，再決定產品怎麼做。可直接開啟的正式站與試用入口放在最前面；往下則是各專案的情境、做法、結果與證據。</p>
-      <ul class="chips" style="margin-top:14px">
-        <li class="chip accent"><a href="#live-work" style="text-decoration:none">可直接查看的上線作品</a></li>
-        <li class="chip"><a href="#case-cms" style="text-decoration:none">01 CMS 建站平台</a></li>
-        <li class="chip"><a href="#case-b2b" style="text-decoration:none">02 B2B 供貨 SaaS</a></li>
-        <li class="chip"><a href="#case-ott" style="text-decoration:none">03 政府 OTT</a></li>
-        <li class="chip"><a href="#case-erp" style="text-decoration:none">04 藥局 ERP 現場</a></li>
-        <li class="chip"><a href="#case-bot" style="text-decoration:none">05 LINE OA AI 客服</a></li>
-        <li class="chip"><a href="#public" style="text-decoration:none">公開作品</a></li>
-      </ul>
+      <div class="detail-hero-title">
+        <p class="eyebrow">Selected Work / 案例</p>
+        <h1>我處理的，<br><em>是系統與人之間的落差。</em></h1>
+      </div>
+      <div class="detail-hero-copy">
+        <p class="lead">從平台轉型、政府標案、SaaS 上線到第一線支援，我先看清楚現場，再決定產品怎麼做。可直接開啟的正式站與試用入口放在最前面；往下則是各專案的情境、做法、結果與證據。</p>
+        <ul class="chips hero-index">
+          <li class="chip accent"><a href="#live-work">上線作品</a></li>
+          <li class="chip"><a href="#case-cms">CMS 建站平台</a></li>
+          <li class="chip"><a href="#case-b2b">B2B 供貨 SaaS</a></li>
+          <li class="chip"><a href="#case-ott">政府 OTT</a></li>
+          <li class="chip"><a href="#case-erp">藥局 ERP 現場</a></li>
+          <li class="chip"><a href="#case-bot">LINE OA AI 客服</a></li>
+          <li class="chip"><a href="#public">公開作品</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -65,19 +70,19 @@
           <div class="top"><h3>CMS12 正式客戶網站</h3><span class="ext">4 個正式站</span></div>
           <p>使用同一套多租戶 CMS 平台，涵蓋電商、內容與企業形象網站。</p>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
-            <a class="btn btn-sm" href="https://yjj.com.tw/zh_TW" target="_blank" rel="noreferrer">璇優品 ↗</a>
-            <a class="btn btn-sm" href="https://volvomagazine.com/" target="_blank" rel="noreferrer">My Volvo ↗</a>
-            <a class="btn btn-sm" href="https://www.ping-pong.tw/zh_TW" target="_blank" rel="noreferrer">徐老師桌球 ↗</a>
-            <a class="btn btn-sm" href="https://3ffood.com.tw/zh_TW" target="_blank" rel="noreferrer">三福產業 ↗</a>
+            <a class="btn btn-sm" href="https://yjj.com.tw/zh_TW" target="_blank" rel="noreferrer">璇優品</a>
+            <a class="btn btn-sm" href="https://volvomagazine.com/" target="_blank" rel="noreferrer">My Volvo</a>
+            <a class="btn btn-sm" href="https://www.ping-pong.tw/zh_TW" target="_blank" rel="noreferrer">徐老師桌球</a>
+            <a class="btn btn-sm" href="https://3ffood.com.tw/zh_TW" target="_blank" rel="noreferrer">三福產業</a>
           </div>
         </article>
         <a class="project" href="https://liff.linerp.co" target="_blank" rel="noreferrer">
-          <div class="top"><h3>徠能 B2B 供貨 SaaS</h3><span class="ext">開啟產品 ↗</span></div>
+          <div class="top"><h3>徠能 B2B 供貨 SaaS</h3><span class="ext">開啟產品</span></div>
           <p>LINE 生態系的進銷存 ERP；涵蓋訂單、金流、配送派工與簽收流程。</p>
           <p class="why"><b>LIVE</b>實際服務入口：liff.linerp.co</p>
         </a>
         <a class="project" href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">
-          <div class="top"><h3>LINE 官方帳號 AI 客服</h3><span class="ext">加入好友 ↗</span></div>
+          <div class="top"><h3>LINE 官方帳號 AI 客服</h3><span class="ext">加入好友</span></div>
           <p>加入官方帳號後，可直接體驗文件同步、RAG 問答與對話延續。</p>
           <p class="why"><b>TRY</b>LINE ID：@594fgqbs</p>
         </a>
@@ -370,7 +375,7 @@
       <div class="project-grid">
         <a class="project wide" href="https://github.com/Oliviaiii/agent-ledger" target="_blank" rel="noreferrer">
           <div>
-            <div class="top"><h3>agent-ledger</h3><span class="ext">GitHub ↗</span></div>
+            <div class="top"><h3>agent-ledger</h3><span class="ext">GitHub</span></div>
             <p>管理本機所有 AI coding agent 的 session：即時看哪些在跑、對應哪個對話、吃多少記憶體，安全結束不需要的；指定期間把散落各處的對話歸納成任務，附 token 用量，產出可以直接交出去的工作報告。支援 Claude Code／Codex／Gemini CLI，Windows 原生與 WSL。</p>
             <p class="why"><b>WHY</b>不同 agent 願意公開的資訊差很多。README 最重要的一節是「支援程度」表：哪個 agent 能精確對到 PID、哪個只能整個結束——動手前先看懂，才不會砍掉正在跑的任務。</p>
             <ul class="chips"><li class="chip">Python</li><li class="chip">CLI + Windows GUI</li><li class="chip">卡住偵測</li><li class="chip">週報</li></ul>
@@ -378,33 +383,33 @@
           <div class="shot"><img src="assets/agent-ledger-gui.png" alt="agent-ledger 圖形視窗：列出每個 agent 程序、記憶體、狀態與對應的對話標題" width="1453" height="575"></div>
         </a>
         <a class="project" href="https://github.com/Oliviaiii/bopomofo-rescue" target="_blank" rel="noreferrer">
-          <div class="top"><h3>bopomofo-rescue</h3><span class="ext">GitHub ↗</span></div>
+          <div class="top"><h3>bopomofo-rescue</h3><span class="ext">GitHub</span></div>
           <p>忘記切輸入法打出的注音亂碼自動還原成中文的 Claude Code skill：<code>這個 PR dk3u3 merge 了嗎</code> → <code>可以</code>。送出訊息當下由 hook 解碼，零指令。</p>
           <p class="why"><b>WHY</b>詞典分詞負責把音還原對，選字交給有上下文的 AI（部屬→部署）。72 個測試裡 27 個防誤判。</p>
           <ul class="chips"><li class="chip">Agent skill</li><li class="chip">UserPromptSubmit hook</li><li class="chip">libtabe 詞頻</li></ul>
         </a>
         <a class="project" href="https://oliviaiii.github.io/civil-law-quiz-tw/" target="_blank" rel="noreferrer">
           <img class="thumb" src="assets/shots/tool-civil-law.webp" alt="書記官法科研習室網站畫面" loading="lazy" width="1200" height="750">
-          <div class="top"><h3>書記官法科研習室</h3><span class="ext">網站 ↗</span></div>
+          <div class="top"><h3>書記官法科研習室</h3><span class="ext">網站</span></div>
           <p>司法特考四等法院書記官考古題：9 科、1,090 題官方試題、850 題逐題解析、模擬考、錯題本、間隔複習、法條速查、申論考點總覽；PWA 離線可用。</p>
           <p class="why"><b>WHY</b>解析採「爭點、法律規則、套入本題、結論」；每題可一鍵回報勘誤；申論考點在真人審稿前一律標 draft。</p>
           <ul class="chips"><li class="chip">Next.js</li><li class="chip">PWA</li><li class="chip">考選部 PDF 匯入器</li></ul>
         </a>
         <a class="project" href="https://oliviaiii.github.io/iPas-quiz/" target="_blank" rel="noreferrer">
           <img class="thumb" src="assets/shots/tool-ipas.webp" alt="iPAS 刷題工具網站畫面" loading="lazy" width="1200" height="750">
-          <div class="top"><h3>iPAS AI 應用規劃師刷題</h3><span class="ext">網站 ↗</span></div>
+          <div class="top"><h3>iPAS AI 應用規劃師刷題</h3><span class="ext">網站</span></div>
           <p>初級與中級 12 份官方試卷共 600 題，逐頁對照官方 PDF，每題可追溯來源與頁碼；600 題 A–D 選項解析初稿。</p>
           <p class="why"><b>WHY</b>兩階段交付：先把全部題目匯入並核對答案，才開始批次詳解。AI 獨立複核以 10 題為一批留紀錄，永遠不會被標成人工複核。</p>
           <ul class="chips"><li class="chip">Next.js</li><li class="chip">來源清冊</li><li class="chip">複核狀態機</li></ul>
         </a>
         <a class="project" href="https://github.com/Oliviaiii/issue_tmp" target="_blank" rel="noreferrer">
-          <div class="top"><h3>GitHub 交付範本（繁中）</h3><span class="ext">GitHub ↗</span></div>
+          <div class="top"><h3>GitHub 交付範本（繁中）</h3><span class="ext">GitHub</span></div>
           <p>9 種 Issue 表單（錯誤、功能新增、功能修改、任務、樣式、技術調研、文件、提問、線上事故）、PR 模板、Labels 初始化腳本、Projects 與自動化教學。</p>
           <p class="why"><b>WHY</b>Status、Priority、Iteration 放 Projects 欄位，不用 Labels 重複維護，避免同一狀態出現兩份資料。</p>
           <ul class="chips"><li class="chip">Issue Forms</li><li class="chip">Projects</li><li class="chip">Template repo</li></ul>
         </a>
         <a class="project" href="https://www.threads.net/@pmenance.manager" target="_blank" rel="noreferrer">
-          <div class="top"><h3>軟體菜鳥 PM 的生存日記</h3><span class="ext">Threads ↗</span></div>
+          <div class="top"><h3>軟體菜鳥 PM 的生存日記</h3><span class="ext">Threads</span></div>
           <p>寫 AI 協作（我怎麼交代任務給 agent、AI 審查的隱形成本、一個案子從一年變三個月）、政府標案、需求釐清與轉職。近 30 天約 10 萬次瀏覽、近 700 位追蹤。</p>
           <p class="why"><b>WHY</b>經營方法跟做產品一樣：親自登入後台讀數據、每篇記錄瀏覽與回覆、用數據修正開頭型別，而不是憑感覺。</p>
           <ul class="chips"><li class="chip">寫作</li><li class="chip">Build in public</li><li class="chip">數據驅動</li></ul>
@@ -415,8 +420,8 @@
 
   <section class="section">
     <div class="container page-nav">
-      <a class="btn" href="index.html">← 回履歷</a>
-      <a class="btn btn-accent" href="ai-workflow.html">AI 工作方式 →</a>
+      <a class="btn" href="index.html">回首頁</a>
+      <a class="btn btn-accent" href="ai-workflow.html">AI 工作方式</a>
     </div>
   </section>
 </main>
@@ -424,7 +429,7 @@
 <footer class="site-footer">
   <div class="container row">
     <span>© <span id="year">2026</span> Olivia Lin</span>
-    <span><a href="index.html">履歷</a> · <a href="ai-workflow.html">AI 工作方式</a> · <a href="#main">回到頂端 ↑</a></span>
+    <span><a href="index.html">首頁</a> · <a href="ai-workflow.html">AI 工作方式</a> · <a href="#main">回到頂端</a></span>
   </div>
 </footer>
 </body>

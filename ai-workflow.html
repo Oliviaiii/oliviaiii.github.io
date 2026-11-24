@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,21 +12,22 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="inner-pages.css?v=1">
   <script src="script.js?v=4" defer></script>
 </head>
-<body>
+<body class="inner-page ai-page">
 <a class="skip-link" href="#main">跳到主要內容</a>
 
 <header class="site-header">
   <div class="container header-row">
-    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · PM</small></a>
+    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · Product Builder</small></a>
     <nav class="nav" aria-label="主導覽">
-      <a href="index.html">履歷</a>
+      <a href="index.html">首頁</a>
       <a href="work.html">案例</a>
       <a href="ai-workflow.html" aria-current="page">AI 工作方式</a>
-      <a href="index.html#contact">聯絡</a>
+      <a href="index.html#connect">聯絡</a>
     </nav>
     <a class="btn btn-sm header-cta" href="林芷筠中文履歷.pdf" download>PDF 履歷</a>
   </div>
@@ -35,10 +36,10 @@
 <main id="main">
 
   <!-- ================================================================ INTRO -->
-  <section class="hero">
+  <section class="hero detail-hero ai-hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow"><b>AI 工作方式</b> · 實證版</p>
+        <p class="eyebrow">AI Workflow / 實證版</p>
         <h1>我不只會問 AI，<br>我設計它<em>怎麼工作</em>。</h1>
         <p class="lead">
           很多人會說「我有在用 AI」。這一頁想回答的是更具體的問題：AI 在我手上做了多少事、我怎麼讓它可靠、
@@ -46,9 +47,9 @@
           它出第一版，我看 diff、改細節、跑起來測、我負責。所有數字都來自我本機的對話紀錄與 git log，用腳本統計，不是印象。
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#harness">看我建立的制度 ↓</a>
-          <a class="btn" href="#prompts">看我實際下的指令 ↓</a>
-          <a class="btn" href="#lessons">踩過的坑 ↓</a>
+          <a class="btn btn-primary" href="#harness">我建立的制度</a>
+          <a class="btn" href="#prompts">實際任務指令</a>
+          <a class="btn" href="#lessons">踩過的坑</a>
         </div>
       </div>
       <aside class="fact-card" aria-label="數據來源">
@@ -350,8 +351,8 @@
 
   <section class="section">
     <div class="container page-nav">
-      <a class="btn" href="work.html">← 看四個案例</a>
-      <a class="btn btn-primary" href="index.html#contact">聯絡我 →</a>
+      <a class="btn" href="work.html">查看案例</a>
+      <a class="btn btn-primary" href="index.html#connect">聯絡我</a>
     </div>
   </section>
 </main>
@@ -359,7 +360,7 @@
 <footer class="site-footer">
   <div class="container row">
     <span>© <span id="year">2026</span> Olivia Lin · 數據截至 2026-09-05，由本機對話紀錄與 GitHub API 統計。</span>
-    <span><a href="index.html">履歷</a> · <a href="work.html">案例</a> · <a href="#main">回到頂端 ↑</a></span>
+    <span><a href="index.html">首頁</a> · <a href="work.html">案例</a> · <a href="#main">回到頂端</a></span>
   </div>
 </footer>
 </body>
