@@ -73,8 +73,8 @@
           <p class="why"><b>LIVE</b>實際服務入口：liff.linerp.co</p>
         </a>
         <a class="project" href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">
-          <div class="top"><h3>LINE 官方帳號 AI 客服</h3><span class="ext">加入好友</span></div>
-          <p>加入官方帳號後，可直接體驗文件同步、RAG 問答與對話延續。</p>
+          <div class="top"><h3>LINERP LINE OA AI 客服</h3><span class="ext">加入好友</span></div>
+          <p>LINERP 的官方 LINE 客服；加入後可直接詢問產品操作與使用流程。</p>
           <p class="why"><b>TRY</b>LINE ID：@594fgqbs</p>
         </a>
       </div>
@@ -360,53 +360,52 @@
     <div class="container case-detail" style="padding:0;border:0">
       <div class="grid">
         <aside class="aside">
-          <div class="index eyebrow">CASE 05 · 自主落地</div>
-          <h3>LINE 官方帳號 AI 客服（RAG）</h3>
-          <p class="muted small">規劃並獨立開發 · 現職軟體開發公司</p>
+          <div class="index eyebrow">CASE 05 · AI PRODUCT</div>
+          <h3>LINERP LINE OA AI 客服（RAG）</h3>
+          <p class="muted small">產品規劃、AI 協作開發與落地 · 現職軟體開發公司</p>
           <ul class="kv">
-            <li><span class="k">期間</span><span>2026.06.18 – 06.29（Phase 1）</span></li>
-            <li><span class="k">型態</span><span>shinvo-shop 的官方 LINE OA 客服：文件問答（RAG）＋公告推播，獨立於主系統的平台級服務</span></li>
-            <li><span class="k">技術</span><span>Python 3.12 / FastAPI（async）、PostgreSQL＋pgvector、Redis＋Arq、SQLAlchemy＋Alembic、自架 BGE-M3 embedding 與 reranker、Gemini Flash 生成（可替換）</span></li>
-            <li><span class="k">文件</span><span>SRS、SAD、SDD、RAG 規劃；OpenSpec changes</span></li>
+            <li><span class="k">期間</span><span>2026.06 – 現在</span></li>
+            <li><span class="k">產品</span><span>LINERP 官方 LINE OA 客服 <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">@594fgqbs</a>；使用者可直接詢問產品操作與流程</span></li>
+            <li><span class="k">角色</span><span>定義產品規則、規格與驗收；以自然語言和 AI 協作完成實作，並建立部署與維運方式</span></li>
+            <li><span class="k">技術</span><span>LINE Messaging API、FastAPI、PostgreSQL／pgvector、Redis、GitHub App、Gemini</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
-            <div class="r"><div class="v">規格到部署</div><div class="l">SRS／SAD／SDD、實作、驗收與交接</div></div>
-            <div class="r"><div class="v">獨立落地</div><div class="l">LINE webhook、RAG、後台與告警</div></div>
-            <div class="r"><div class="v">多租戶</div><div class="l">控制平面 DB＋每租戶連線 registry</div></div>
+            <div class="r"><div class="v">LINERP 文件變知識</div><div class="l">GitHub 操作文件更新後，可同步建立新版知識索引</div></div>
+            <div class="r"><div class="v">回答有邊界</div><div class="l">有依據才回答；資訊不足、系統忙與題外問題分開處理</div></div>
+            <div class="r"><div class="v">從 LINERP 延伸</div><div class="l">先完成官方客服，再保留擴充其他 Bot 的隔離能力</div></div>
           </div>
         </aside>
         <div>
           <div class="block">
-            <h4>情境</h4>
-            <p>客戶在 LINE 問「後台這個怎麼設定」，客服要翻手冊回答，重複問題吃掉時間；也需要一個能推播公告、把沒回答到的問題收回來的入口。這是我在 Threads 上「AI 客服開發」那篇 build-in-public 文章的本體。</p>
+            <h4>為什麼要做</h4>
+            <p>LINERP 的供應商與商家原本就在 LINE 內使用產品，遇到操作問題時，也會直接到官方帳號詢問。客服需要反覆翻找操作文件、確認版本，再把同一件事重新說一次；文件更新後，舊回答也可能繼續流通。我以 LINERP 官方 LINE OA 為第一個實際使用情境，由文件提供答案依據，AI 負責理解問法與組織回覆，沒有足夠依據時就釐清或回收問題。</p>
           </div>
           <div class="block">
-            <h4>我負責從規劃到落地</h4>
+            <h4>我如何把它做成產品</h4>
             <ul>
-              <li><strong>先寫清楚再動手。</strong>Phase 1 SRS、SAD、SDD 與 OpenSpec 變更提案（change-1 骨架與 webhook 閘道、change-2 文件同步、change-3 RAG 問答），每一段照提案交付。</li>
-              <li><strong>骨架與閘道。</strong>FastAPI 服務、LINE webhook 閘道、最小後台（JWT 登入＋RBAC＋audit＋對話檢視＋指標）、DLQ＋告警＋人工重跑。</li>
-              <li><strong>知識同步與問答。</strong>GitHub App 以 Git Trees＋Blobs 只抓 <code>docs/manual</code> 子樹做快照；自架 BGE-M3 embedding（HuggingFace TEI）；FAQ RAG 問答、對話延續、Gemini 自動重試、分類失敗改回「系統忙」。</li>
-              <li><strong>後台與多租戶。</strong>未命中問題回報、後台設定畫面、機密加密、fallback 分類；控制平面 DB、租戶資料模型、每租戶連線 registry、多庫遷移工具、add-tenant runbook。</li>
-              <li><strong>部署。</strong>改用 Hestia＋打 tag 自動部署（不用 Docker），寫正式環境部署交接與「從零把平台跑起來」的伺服器 runbook；清掉多租戶大改留下的文件債。</li>
+              <li><strong>先定義 AI 可以知道什麼。</strong>知識只從指定的 GitHub 文件目錄同步，不讀整個程式庫；文件先完成索引與檢核，再切換成新版本，同步失敗時保留上一版，避免知識更新到一半就對外回答。</li>
+              <li><strong>把「答不出來」設計成正常流程。</strong>有文件依據才回答；問法有歧義時先反問，文件沒有答案就留下未命中紀錄，外部服務異常則明確回覆系統忙，不把技術失敗說成產品沒有功能。</li>
+              <li><strong>讓 LINE 對話真的能使用。</strong>處理 Webhook 驗證、重複訊息、連續傳送與上下文延續，並把回答整理成適合手機閱讀的純文字；失敗工作可重試、可告警，也能由後台查看。</li>
+              <li><strong>從單一客服擴成平台。</strong>同一套服務可接多個 LINE 官方帳號，依 LINE 事件辨識 Bot；各 Bot 的知識、對話、設定與金鑰分開管理，資料庫再加上租戶隔離，降低跨客戶讀到資料的風險。</li>
+              <li><strong>讓非開發者也能維運。</strong>後台可以新增 Bot、設定 LINE 與知識來源、查看同步狀態、未命中問題、錯誤診斷、對話與用量；敏感憑證加密保存，重要操作保留稽核紀錄。</li>
             </ul>
           </div>
           <div class="block">
-            <h4>結果</h4>
-            <ul>
-              <li>12 天內從規格到可部署的 Phase 1：RAG 問答、公告推播、未命中回報、多租戶與正式環境部署流程。</li>
-              <li>整個過程有 SRS／SAD／SDD 與 OpenSpec 對照，接手的人不用讀對話紀錄。</li>
-            </ul>
+            <h4>我與 AI 的分工</h4>
+            <p>我先寫清楚使用情境、回答邊界、資料隔離、失敗處理與驗收方式，再用自然語言請 AI 分段實作、測試與審查。我會在真實 LINE 對話中驗證問法、追查回答依據，並確認知識同步、後台狀態與部署版本；AI 加快程式產出，我負責決定產品怎麼運作、什麼證據才算完成。</p>
           </div>
           <div class="block">
-            <h4>近期技術演進</h4>
+            <h4>目前能完成的事</h4>
             <ul>
-              <li><strong>相依安全更新。</strong>FastAPI 已升級以修補參數處理造成的阻斷服務風險，並沿用既有測試與正式部署流程驗證。</li>
-              <li><strong>知識來源更名也能不中斷。</strong>GitHub repository 改名後，文件同步補上轉址相容與來源正名；同步成功、租戶設定與失敗佇列仍分層核對，不因程式合併就宣稱所有租戶都已完成更新。</li>
+              <li>從指定 GitHub 文件建立並更新知識庫，保留同步狀態與版本紀錄。</li>
+              <li>在 LINE 進行有依據的產品問答、釐清模糊問題並延續同一段對話。</li>
+              <li>以同一套後台管理多個 Bot，查看未命中問題、同步狀態、錯誤診斷及 AI 用量。</li>
+              <li>透過測試門檻、版本標籤與回退流程部署；Repository 更名或知識來源異動時，也能追蹤同步是否真正完成。</li>
             </ul>
           </div>
           <div class="block">
             <h4>可以直接試用</h4>
-            <p>加入 LINE 官方帳號 <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer"><strong>@594fgqbs</strong></a>，即可直接體驗這套 RAG AI 客服。</p>
+            <p>加入 LINERP 官方 LINE OA <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer"><strong>@594fgqbs</strong></a>，即可直接詢問產品操作與使用流程，體驗這套 RAG AI 客服。</p>
           </div>
         </div>
       </div>
