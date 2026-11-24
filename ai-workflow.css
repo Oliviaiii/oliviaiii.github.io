@@ -99,7 +99,7 @@
 .skill-phase a:hover { color: var(--ai-green); }
 
 .skill-directory { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ai-black); }
-.skill-card { scroll-margin-top: 92px; padding: 34px 48px 40px 0; border-bottom: 1px solid var(--ai-line); transition: background-color .25s, box-shadow .25s; }
+.skill-card { scroll-margin-top: 100px; padding: 34px 48px 40px 0; border-bottom: 1px solid var(--ai-line); transition: background-color .25s, box-shadow .25s; }
 .skill-card:nth-child(odd) { padding-right: 54px; border-right: 1px solid var(--ai-line); }
 .skill-card:nth-child(even) { padding-left: 54px; }
 .skill-card:target { background: var(--ai-green-soft); box-shadow: 0 0 0 14px var(--ai-green-soft); }
@@ -163,6 +163,7 @@
   .skill-route-map { grid-template-columns: 1fr; }
   .skill-phase,
   .skill-phase:nth-child(2n) { border-right: 0; }
+  .skill-phase a { display: flex; min-height: 44px; align-items: center; margin-top: 0; }
   .skill-directory { grid-template-columns: 1fr; }
   .skill-card,
   .skill-card:nth-child(odd),
@@ -184,6 +185,7 @@
   .hero-manifesto strong { font-size: 15px; }
   .mirror-quote .mirror-lead { font-size: 32px; }
   .workflow-step { grid-template-columns: 40px 1fr; gap: 12px; }
+  .skill-card dl > div { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
   .step-body h3 { font-size: 26px; }
   .conclusion-grid .page-nav { flex-direction: column; align-items: stretch; }
   .conclusion-grid .page-nav .btn { text-align: center; }

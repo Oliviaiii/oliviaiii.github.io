@@ -79,6 +79,7 @@
   position: relative;
   padding: clamp(110px, 13vw, 200px) 0;
   border-top: 1px solid var(--home-line);
+  scroll-margin-top: 65px;
   overflow: hidden;
 }
 
@@ -154,8 +155,9 @@
   .intro-kicker { font-size: 22px; }
   .home-lead { font-size: 16px; line-height: 1.9; }
   .home-actions { gap: 18px; }
+  .hero-links a { min-height: 44px; align-items: center; }
   .contact-pill { width: 100%; justify-content: center; }
-  .home-section { padding: 100px 0; }
+  .home-section { padding: 100px 0; scroll-margin-top: 100px; }
   .section-ghost { top: -58px; left: 0; font-size: 82px; }
   .home-section-head { margin-bottom: 60px; }
   .home-section-head h2,

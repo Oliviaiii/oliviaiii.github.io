@@ -91,11 +91,22 @@
 .inner-page .project .why { border-top-style: solid; color: #363a40; }
 .inner-page .project .thumb { border-radius: 0; border-color: var(--page-line); }
 .inner-page .project.wide .shot { border-radius: 0; }
+.inner-page .project .top > *,
+.inner-page .case-detail .grid > *,
+.inner-page .case-detail .kv li > *,
+.inner-page .case-detail .block,
+.inner-page .boundary-grid > * { min-width: 0; }
+.inner-page code,
+.inner-page .case-detail .kv li > span,
+.inner-page .case-detail a { overflow-wrap: anywhere; }
+.inner-page video,
+.inner-page iframe { max-width: 100%; }
 
 .inner-page .chip { border-radius: 999px; background: #fff; border-color: var(--page-line); }
 .inner-page .chip.accent { color: var(--page-accent); border-color: var(--page-accent); background: var(--page-accent-soft); }
 
 .inner-page .case-detail .grid { grid-template-columns: 330px minmax(0, 1fr); gap: clamp(54px, 7vw, 100px); }
+.inner-page .container.case-detail { padding-block: 0; border: 0; }
 .inner-page .case-detail .aside { top: 94px; }
 .inner-page .case-detail h3 { font-size: 34px; font-weight: 500; letter-spacing: -.035em; }
 .inner-page .case-detail .kv li { padding: 9px 0; border-top-style: solid; }
@@ -174,12 +185,20 @@
   .detail-hero h1 { font-size: 44px !important; }
   .detail-hero-copy .lead,
   .ai-hero .lead { font-size: 16px; }
-  .inner-page .section { padding: 78px 0; scroll-margin-top: 92px; }
+  .inner-page .section { padding: 78px 0; scroll-margin-top: 100px; }
   .inner-page .section-head { margin-bottom: 42px; }
   .inner-page .section-head h2 { font-size: 38px; }
   .inner-page .project-grid { gap: 34px; }
   .inner-page .project.wide { grid-template-columns: 1fr; }
-  .inner-page .case-detail h3 { font-size: 30px; }
+  .inner-page .case-detail h3 { font-size: 30px; word-break: keep-all; }
+  .inner-page .case-detail .kv li {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 12px 0;
+  }
+  .inner-page .case-detail .kv .k { padding-top: 0; }
+  .inner-page .project .top { align-items: flex-start; }
+  .inner-page .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
   .inner-page .case-detail .block p,
   .inner-page .case-detail .block li { font-size: 15px; }
   .inner-page .dash-grid { grid-template-columns: 1fr 1fr; }

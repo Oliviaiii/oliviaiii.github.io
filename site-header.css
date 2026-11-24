@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  min-width: 0;
   width: 100%;
   max-width: 1320px;
   min-height: 64px;
@@ -39,9 +40,12 @@
 
 .site-nav {
   display: flex;
+  min-width: 0;
   gap: 4px;
   margin-left: auto;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 
@@ -83,13 +87,18 @@
 .site-mobile-resume { display: none; }
 
 @media (max-width: 640px) {
-  .global-header { min-height: 92px; }
-  .site-header-inner { flex-wrap: wrap; gap: 0; min-height: 91px; padding: 12px 20px 0; }
+  .global-header { min-height: 100px; }
+  .site-header-inner { flex-wrap: wrap; gap: 0; min-height: 99px; padding: 8px 20px 0; }
+  .site-brand { min-height: 38px; }
   .site-brand small { display: none; }
-  .site-nav { order: 3; width: 100%; margin-left: 0; padding: 5px 0 9px; gap: 0; }
-  .site-nav a { padding: 6px 9px; font-size: 13px; }
+  .site-nav { order: 3; width: 100%; margin-left: 0; padding: 0 0 9px; gap: 0; }
+  .site-nav a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 9px; font-size: 13px; }
   .site-nav .site-mobile-resume { display: block; }
   .site-header-cta { display: none; }
+}
+
+@media (max-width: 380px) {
+  .site-nav a { min-width: 41px; justify-content: center; padding-inline: 7px; font-size: 12px; }
 }
 
 @media print {
