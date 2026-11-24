@@ -4,7 +4,10 @@
     var(--bg);
 }
 
-.home-page .site-header { background: rgba(251, 251, 249, .9); }
+.home-page .site-header {
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+}
 .home-hero { padding: clamp(72px, 9vw, 128px) 0 clamp(72px, 8vw, 112px); }
 .home-hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); gap: clamp(48px, 8vw, 112px); align-items: end; }
 .home-intro h1 { max-width: 900px; margin: 18px 0 26px; font-size: clamp(42px, 6.4vw, 82px); line-height: 1.08; letter-spacing: -.045em; }
