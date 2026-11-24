@@ -14,27 +14,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="inner-pages.css?v=2">
-  <link rel="stylesheet" href="ai-workflow.css?v=3">
+  <link rel="stylesheet" href="inner-pages.css?v=3">
+  <link rel="stylesheet" href="ai-workflow.css?v=4">
+  <link rel="stylesheet" href="site-header.css?v=1">
+  <script src="site-header.js?v=1" defer></script>
   <script src="script.js?v=4" defer></script>
 </head>
 <body class="inner-page ai-page">
 <a class="skip-link" href="#main">跳到主要內容</a>
 
-<header class="site-header">
-  <div class="container header-row">
-    <a class="wordmark" href="index.html">林芷筠 <small>Olivia Lin · Product Builder</small></a>
-    <nav class="nav" aria-label="主導覽">
-      <a href="index.html">首頁</a>
-      <a href="index.html#experience">經歷</a>
-      <a href="work.html">案例</a>
-      <a href="ai-workflow.html" aria-current="page">AI 工作方式</a>
-      <a href="index.html#connect">聯絡</a>
-      <a class="nav-resume" href="林芷筠中文履歷.pdf" download>PDF 履歷</a>
-    </nav>
-    <a class="btn btn-sm header-cta" href="林芷筠中文履歷.pdf" download>PDF 履歷</a>
-  </div>
-</header>
+<header class="global-header" data-site-header data-current="ai"></header>
 
 <main id="main">
   <section class="ai-new-hero">
@@ -154,7 +143,7 @@
         <li class="workflow-step">
           <div class="step-number">01</div>
           <div class="step-body">
-            <p class="step-skill">/issue-open · /issue-plan</p>
+            <p class="step-skill"><a href="#skill-issue-open">/issue-open</a> · <a href="#skill-issue-plan">/issue-plan</a></p>
             <h3>需求被說清楚</h3>
             <p>從情境、限制到驗收條件先收斂。PM 定稿後回寫 Issue，需求未就緒就不進入開發。</p>
             <span class="owner human-owner">我定義 · AI 整理</span>
@@ -163,7 +152,7 @@
         <li class="workflow-step">
           <div class="step-number">02</div>
           <div class="step-body">
-            <p class="step-skill">/issue-start · /issue-fix · /issue-hotfix</p>
+            <p class="step-skill"><a href="#skill-issue-start">/issue-start</a> · <a href="#skill-issue-fix">/issue-fix</a> · <a href="#skill-issue-hotfix">/issue-hotfix</a></p>
             <h3>選對入口再開工</h3>
             <p>依階段、旗標與 Label 分流成新功能、驗收修正或正式站止血；讀不到狀態就停止，不能猜。</p>
             <span class="owner gate-owner">共同判準 · Fail-closed</span>
@@ -172,7 +161,7 @@
         <li class="workflow-step">
           <div class="step-number">03</div>
           <div class="step-body">
-            <p class="step-skill">worktree · DB · preview · /commit</p>
+            <p class="step-skill">worktree · DB · preview · <a href="#skill-commit">/commit</a></p>
             <h3>在隔離環境協作實作</h3>
             <p>AI 建立分支、工作目錄、專屬資料庫與預覽網址，再依規格實作；提交前檢查變更，不夾帶無關或機敏檔案。</p>
             <span class="owner ai-owner">AI 執行 · 我檢視</span>
@@ -181,7 +170,7 @@
         <li class="workflow-step">
           <div class="step-number">04</div>
           <div class="step-body">
-            <p class="step-skill">/issue-check · /pr-review</p>
+            <p class="step-skill"><a href="#skill-issue-check">/issue-check</a> · <a href="#skill-pr-review">/pr-review</a></p>
             <h3>反錨定複核與多層審查</h3>
             <p>先不看 Diff，根據需求推導應有行為，再回頭找證據；PR 經本地檢查與 Codex 遠端審查，Finding 修到收斂。</p>
             <span class="owner gate-owner">證據閘門</span>
@@ -190,7 +179,7 @@
         <li class="workflow-step">
           <div class="step-number">05</div>
           <div class="step-body">
-            <p class="step-skill">/pr-merge</p>
+            <p class="step-skill"><a href="#skill-pr-merge">/pr-merge</a></p>
             <h3>由人授權不可逆操作</h3>
             <p>合併、部署與環境清理集中在唯一入口。安全閘門通過後，仍要取得明確授權才能執行。</p>
             <span class="owner human-owner">我確認 · AI 執行</span>
@@ -199,7 +188,7 @@
         <li class="workflow-step">
           <div class="step-number">06</div>
           <div class="step-body">
-            <p class="step-skill">/issue-qa</p>
+            <p class="step-skill"><a href="#skill-issue-qa">/issue-qa</a></p>
             <h3>在真實站台驗收</h3>
             <p>確認正確版本已部署，再像使用者一樣操作。結果附證據寫回 Issue 與看板；未驗證，就不能宣稱完成。</p>
             <span class="owner gate-owner">讀回確認 · 留下證據</span>
@@ -214,6 +203,99 @@
         <div><span>🚀</span><strong>Official</strong><small>正式站驗收</small></div>
       </div>
       <p class="promotion-note">每晉升一個環境，都重新經過「PR 審查 → 合併部署 → 站台驗收」，不把前一站的通過直接當成下一站的證據。</p>
+    </div>
+  </section>
+
+  <section class="section skill-map-section" id="skill-map">
+    <div class="container">
+      <div class="section-head">
+        <div class="index">Skill Map / 完整地圖</div>
+        <div>
+          <h2>每支 Skill 都有明確的任務，<br>也有必須交出的結果。</h2>
+          <p class="desc">這是我實際使用的 Claude 工作流程精簡版。從需求定義、開發、查證到上線驗收，每支 Skill 只負責一種工作；點擊名稱即可查看用途與完成產物。</p>
+        </div>
+      </div>
+
+      <nav class="skill-route-map" aria-label="Skill 完整流程地圖">
+        <div class="skill-phase">
+          <p><span>01</span> 定義需求</p>
+          <a href="#skill-issue-open">/issue-open</a>
+          <a href="#skill-issue-plan">/issue-plan</a>
+        </div>
+        <div class="skill-phase">
+          <p><span>02</span> 開始實作</p>
+          <a href="#skill-issue-start">/issue-start</a>
+          <a href="#skill-issue-fix">/issue-fix</a>
+          <a href="#skill-issue-hotfix">/issue-hotfix</a>
+          <a href="#skill-commit">/commit</a>
+        </div>
+        <div class="skill-phase">
+          <p><span>03</span> 查證審查</p>
+          <a href="#skill-issue-check">/issue-check</a>
+          <a href="#skill-pr-review">/pr-review</a>
+        </div>
+        <div class="skill-phase">
+          <p><span>04</span> 合併上線</p>
+          <a href="#skill-pr-merge">/pr-merge</a>
+        </div>
+        <div class="skill-phase">
+          <p><span>05</span> 真實驗收</p>
+          <a href="#skill-issue-qa">/issue-qa</a>
+        </div>
+      </nav>
+
+      <div class="skill-directory" aria-label="核心 Skills 說明">
+        <article class="skill-card" id="skill-issue-open">
+          <p class="skill-name">/issue-open</p>
+          <h3>把模糊想法變成可討論的問題單</h3>
+          <dl><div><dt>何時使用</dt><dd>收到新需求、客訴或產品想法時。</dd></div><div><dt>完成產物</dt><dd>問題背景、目標、範圍與待確認問題的 Issue 初稿。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-plan">
+          <p class="skill-name">/issue-plan</p>
+          <h3>把討論收斂成可執行規格</h3>
+          <dl><div><dt>何時使用</dt><dd>需求需要釐清、拆解或補足驗收條件時。</dd></div><div><dt>完成產物</dt><dd>定稿的範圍、限制、依賴與可驗證的驗收標準。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-start">
+          <p class="skill-name">/issue-start</p>
+          <h3>確認狀態後建立隔離開發環境</h3>
+          <dl><div><dt>何時使用</dt><dd>需求已就緒，準備正式開始新功能時。</dd></div><div><dt>完成產物</dt><dd>正確分支、Worktree、資料庫、預覽網址與開工紀錄。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-fix">
+          <p class="skill-name">/issue-fix</p>
+          <h3>處理驗收發現並避免改錯版本</h3>
+          <dl><div><dt>何時使用</dt><dd>功能已交付，但測試或驗收發現需要修正時。</dd></div><div><dt>完成產物</dt><dd>修正內容、回歸檢查證據與同步更新的 Issue 狀態。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-hotfix">
+          <p class="skill-name">/issue-hotfix</p>
+          <h3>用最小變更處理正式站緊急問題</h3>
+          <dl><div><dt>何時使用</dt><dd>正式環境故障，且不能等待一般開發流程時。</dd></div><div><dt>完成產物</dt><dd>受控的最小修正、影響範圍與緊急驗證證據。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-commit">
+          <p class="skill-name">/commit</p>
+          <h3>把變更整理成安全、可追蹤的提交</h3>
+          <dl><div><dt>何時使用</dt><dd>一個可驗證的修改單位已完成，準備留下版本紀錄時。</dd></div><div><dt>完成產物</dt><dd>排除機敏與無關檔案、格式一致且可回溯的 Commit。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-check">
+          <p class="skill-name">/issue-check</p>
+          <h3>先從需求推導，再檢查實作證據</h3>
+          <dl><div><dt>何時使用</dt><dd>開發完成、準備進入 PR 前，需要避免被現有做法錨定時。</dd></div><div><dt>完成產物</dt><dd>需求覆蓋、缺漏、風險與待補證據的複核清單。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-pr-review">
+          <p class="skill-name">/pr-review</p>
+          <h3>讓問題在合併前被看見並收斂</h3>
+          <dl><div><dt>何時使用</dt><dd>PR 已建立，需要檢查程式、行為與需求是否一致時。</dd></div><div><dt>完成產物</dt><dd>審查結果、Finding 修正紀錄與可合併的判斷依據。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-pr-merge">
+          <p class="skill-name">/pr-merge</p>
+          <h3>通過安全閘門後執行不可逆操作</h3>
+          <dl><div><dt>何時使用</dt><dd>所有審查完成，並取得人的明確合併或部署授權時。</dd></div><div><dt>完成產物</dt><dd>合併版本、部署結果、狀態回寫與環境清理紀錄。</dd></div></dl>
+        </article>
+        <article class="skill-card" id="skill-issue-qa">
+          <p class="skill-name">/issue-qa</p>
+          <h3>在真實版本上完成使用者視角驗收</h3>
+          <dl><div><dt>何時使用</dt><dd>功能已部署到指定環境，需要確認真的可用時。</dd></div><div><dt>完成產物</dt><dd>驗收結論、畫面或紀錄證據，以及回寫後的看板狀態。</dd></div></dl>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -248,8 +330,8 @@
       </div>
 
       <div class="skill-strip" aria-label="實際使用的核心 Skills">
-        <span>/issue-open</span><span>/issue-plan</span><span>/issue-start</span><span>/issue-fix</span><span>/issue-hotfix</span>
-        <span>/commit</span><span>/issue-check</span><span>/pr-review</span><span>/pr-merge</span><span>/issue-qa</span>
+        <a href="#skill-issue-open">/issue-open</a><a href="#skill-issue-plan">/issue-plan</a><a href="#skill-issue-start">/issue-start</a><a href="#skill-issue-fix">/issue-fix</a><a href="#skill-issue-hotfix">/issue-hotfix</a>
+        <a href="#skill-commit">/commit</a><a href="#skill-issue-check">/issue-check</a><a href="#skill-pr-review">/pr-review</a><a href="#skill-pr-merge">/pr-merge</a><a href="#skill-issue-qa">/issue-qa</a>
       </div>
     </div>
   </section>
