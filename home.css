@@ -157,7 +157,7 @@
   .home-actions { gap: 18px; }
   .hero-links a { min-height: 44px; align-items: center; }
   .contact-pill { width: 100%; justify-content: center; }
-  .home-section { padding: 100px 0; scroll-margin-top: 100px; }
+  .home-section { padding: 100px 0; scroll-margin-top: 12px; }
   .section-ghost { top: -58px; left: 0; font-size: 82px; }
   .home-section-head { margin-bottom: 60px; }
   .home-section-head h2,

@@ -185,7 +185,7 @@
   .detail-hero h1 { font-size: 44px !important; }
   .detail-hero-copy .lead,
   .ai-hero .lead { font-size: 16px; }
-  .inner-page .section { padding: 78px 0; scroll-margin-top: 100px; }
+  .inner-page .section { padding: 78px 0; scroll-margin-top: 12px; }
   .inner-page .section-head { margin-bottom: 42px; }
   .inner-page .section-head h2 { font-size: 38px; }
   .inner-page .project-grid { gap: 34px; }

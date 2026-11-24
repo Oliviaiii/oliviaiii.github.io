@@ -167,7 +167,7 @@
   .skill-directory { grid-template-columns: 1fr; }
   .skill-card,
   .skill-card:nth-child(odd),
-  .skill-card:nth-child(even) { padding: 30px 0 34px; border-right: 0; }
+  .skill-card:nth-child(even) { scroll-margin-top: 12px; padding: 30px 0 34px; border-right: 0; }
   .system-grid { grid-template-columns: 1fr; }
   .system-grid article,
   .system-grid article:nth-child(odd),
