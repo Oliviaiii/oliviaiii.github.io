@@ -197,7 +197,7 @@
               <li><strong>把「第一次使用也走得完」寫成共用規則。</strong>前台避免工程術語、原生彈窗與手機橫向捲動，統一主要操作、狀態、清單與錯誤提示；這些規則成為 AI 實作時必須遵守的產品基線。</li>
               <li><strong>先驗再發。</strong>每個新功能先在本機或測試站實際走過合作申請、下單、改單、簽收與 LINE 通知，並跨手機與桌機寬度驗收；正式部署由工程師執行，我負責交付前條件、切換清單與部署後實際路徑確認。</li>
               <li><strong>把摩擦點變成票。</strong>綁定通知流程卡在連動畫面、供應商不知道 rich menu 要貼什麼連結、商家查看賣場 404——我自己操作發現，開票、驗收、結案；能整批處理的就整批規劃與交付。</li>
-              <li><strong>教學影片自動化。</strong>做了 <a href="https://github.com/Oliviaiii" target="_blank" rel="noreferrer">tutorial-recorder</a>：用腳本操作系統、產生旁白與字幕、重點推近，一行指令產出 mp4 ＋ srt；功能改版重錄也是同一行指令。</li>
+              <li><strong>教學影片自動化。</strong>做了 <code>tutorial-recorder</code>：用腳本操作系統、產生旁白與字幕、重點推近，一行指令產出 mp4 ＋ srt；功能改版重錄也是同一行指令。<a href="#case-b2b-videos">觀看實際產出的教學影片</a>。</li>
               <li><strong>新舊系統切換。</strong>盤點舊版功能與資料、整理上線前必修清單、網址交換與回退計畫；正式環境部署交由工程師處理，我負責確認功能、資料與使用流程能完成交接。</li>
             </ul>
           </div>
@@ -226,7 +226,7 @@
               <li><strong>實際教學影片：</strong>以下影片由自動錄製流程產出並部署在正式網域；完整教學可在產品的 LINE 教學入口依供應商／商家角色查找。</li>
               <li>我下給 AI 的批次指令與驗收指令原文：<a href="ai-workflow.html#prompts">指令節錄</a>。</li>
             </ul>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:16px">
+            <div id="case-b2b-videos" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:16px;scroll-margin-top:96px">
               <figure style="margin:0">
                 <video controls preload="metadata" playsinline style="display:block;width:100%;aspect-ratio:16/9;background:#111;border:1px solid var(--line)">
                   <source src="https://linerp.co/videos/line-help/merchant-first-order-v1.mp4" type="video/mp4">
