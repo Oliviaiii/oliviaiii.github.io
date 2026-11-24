@@ -6,4 +6,6 @@
 /.playwright-cli/
 /tmp/
 /output/playwright/
+/output/pdf/
+__pycache__/
 .claude/
