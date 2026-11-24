@@ -255,51 +255,64 @@
         <aside class="aside">
           <div class="index eyebrow">CASE 03 · 政府標案</div>
           <h3>政府 OTT 影音平台</h3>
-          <p class="muted small">專案經理 · 現職軟體開發公司</p>
+          <p class="muted small">產品／專案經理 · 維運與新功能交付</p>
           <ul class="kv">
             <li><span class="k">期間</span><span>2025.06 – 現在</span></li>
-            <li><span class="k">規模</span><span>NT$5M 等級多年期標案；約 2 萬月活躍使用者、20 萬筆以上影音與新聞內容</span></li>
-            <li><span class="k">範圍</span><span>網站與 App 維運、新功能開發、資安檢測、季報</span></li>
-            <li><span class="k">技術</span><span>Laravel 13／PHP 8.3、Vue 2／Vuetify、Node.js 24 部署、Google Cloud Storage、影音服務介接</span></li>
-            <li><span class="k">窗口</span><span>機關承辦、機關資訊部門、內部開發</span></li>
+            <li><span class="k">產品</span><span>公共影音服務：官網、App、影音內容、新聞、節目表與 CMS</span></li>
+            <li><span class="k">責任</span><span>需求釐清、規格與報價、跨單位協調、驗收、上線追蹤與季報</span></li>
+            <li><span class="k">技術</span><span>Laravel 13／PHP 8.5、Vue 2、Node.js 24、Google Cloud Storage、影音與側錄服務</span></li>
+            <li><span class="k">協作</span><span>機關承辦、資訊部門、內容營運、內部工程與維運</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
-            <div class="r"><div class="v">每季</div><div class="l">向機關簡報營運、流量與改善</div></div>
-            <div class="r"><div class="v">37 案</div><div class="l">節目表介接測試情境（A–E）</div></div>
-            <div class="r"><div class="v">每日</div><div class="l">自動化首頁健康檢查</div></div>
+            <div class="r"><div class="v">需求到交付</div><div class="l">把口頭需求整理成規格、票與驗收基準</div></div>
+            <div class="r"><div class="v">跨單位協作</div><div class="l">對齊機關、資訊部門、工程與維運</div></div>
+            <div class="r"><div class="v">服務不中斷</div><div class="l">在既有系統持續運作下導入新功能與改版</div></div>
           </div>
         </aside>
         <div>
           <div class="block">
             <h4>情境</h4>
-            <p>接手既有服務：舊功能要穩、新功能要進、每季要向機關簡報、要配合弱點掃描與 App 檢測。其中一項是把節目表資料介接從人工作業改成 CSV 透過雲端儲存自動同步，牽涉機關資訊部門、內部工程師與報價。</p>
+            <p>這不是從零開始的新產品，而是一套持續對外服務的政府影音平台。官網、App、影音播放、新聞、節目表、會員與後台都在同一個服務鏈上；既有功能不能停，新需求仍要持續交付，還要同時處理資安檢測、稽核文件、季報與跨單位溝通。專案經理不能只轉述需求，必須把每一次變更整理成工程做得出來、機關驗得過、正式環境也能安全切換的交付內容。</p>
           </div>
           <div class="block">
-            <h4>我負責規劃、開票與驗收</h4>
+            <h4>代表案例：節目表資料介接重整</h4>
+            <p>原本的節目表依賴既有外部來源與舊流程，這次改成由客台上傳 CSV 到 Google Cloud Storage，系統自動抓取、檢核並更新前後台。看起來只是「讀一個檔案」，實際上會影響播出日期、跨日節目、腔調與分級顯示、側錄綁定、前台播放連結、失敗通知及既有資料是否被覆蓋；其中有些錯誤不會讓程式中斷，卻會讓播放連結或側錄靜默失效。</p>
+          </div>
+          <div class="block">
+            <h4>我負責把需求變成可交付的系統規則</h4>
             <ul>
-              <li><strong>角色邊界。</strong>我負責釐清需求、寫規格、拆票、協調工程與實際驗收；程式實作由工程端完成，不把工程提交算成我的開發成果。</li>
-              <li><strong>先弄清楚狀況再開會。</strong>開會前把所有節目表相關 Issue（含已關閉）盤點成現況摘要；用錄音轉文字整理客戶會議，把口頭需求對回文件。</li>
-              <li><strong>寫規格與報價。</strong>節目表資料介接（CSV）規格說明書 v1.0、報價單與報價異動說明、需求與驗收對照表；把內部監控（Discord 通知）與客戶通知（Email）拆成兩張票，各自驗收。</li>
-              <li><strong>把測試情境列完整。</strong>從一份範本 CSV 產出 37 個測試案例：正常、相容、覆蓋、缺漏、無效、空檔、檔名與邊界，逐案記錄同步結果、前台顯示與通知。</li>
-              <li><strong>失敗也要看得懂。</strong>客戶收到的失敗通知必須說明：哪個檔案、何時、哪裡失敗、既有資料是否變動、下一步做什麼；例外堆疊留在伺服器日誌。</li>
-              <li><strong>維運自動化。</strong>建每日 automation 檢查首頁是否正常、是否出現錯誤殼頁；協調弱點掃描、App 檢測與稽核文件的交付。</li>
-              <li><strong>可點擊原型。</strong>2026 年初做了新版網站與影音後台的可點擊原型（32 頁靜態 HTML，含生活體驗、會員、影音後台四頁 Demo），附前後台 UI／UX 設計理念文件，作為提案與討論的基準。</li>
+              <li><strong>先拆資料語意，不只抄欄位。</strong>逐欄比對客台範例檔、既有資料與前台顯示，釐清舊播出日制與新日曆日制、跨午夜節目、文字編碼、分級、腔調及節目編號的真正用途；把採用、忽略、必填與不在本次範圍的內容寫清楚。</li>
+              <li><strong>把口頭需求變成規格與報價。</strong>整理會議紀錄、規格說明書、需求與驗收對照表、報價及異動說明，再拆成主流程、內部監控、客戶 Email、後台紀錄與前置驗證等可追蹤工作。</li>
+              <li><strong>先處理「看起來成功」的風險。</strong>節目名稱對不到時，匯入可能成功但側錄與播放連結消失；我先要求驗證既有綁定邏輯，改以較穩定的節目編號延續關聯，並用綁定率與資料覆蓋異常主動告警。</li>
+              <li><strong>內部與客戶通知分開設計。</strong>內部訊息要讓工程師一眼判斷是否需要處理；寄給客台的信件則必須是繁體中文，說清楚檔案、時間、錯誤位置、資料是否變動及下一步，不直接丟出框架例外或伺服器路徑。</li>
+              <li><strong>每一條規格都要能驗。</strong>我依正常、缺漏、錯誤格式、重複時段、跨月跨年、同檔名覆寫與多檔並存等情境建立測試資料，在測試站走黑箱驗收；發現規格、實作或提示方向不一致時，留下證據、開票並重新驗證。</li>
+              <li><strong>程式與部署責任清楚分工。</strong>我負責需求決策、規格、開票、跨單位確認與實際驗收；工程師負責程式實作及正式部署。我會讀程式與執行紀錄確認無法用畫面驗證的行為，但不把工程提交算成自己的開發成果。</li>
             </ul>
           </div>
           <div class="block">
-            <h4>結果</h4>
+            <h4>除了新功能，也要照顧正式服務</h4>
             <ul>
-              <li>既有服務維持穩定，新功能持續上線；每季簡報有營運與流量數據可講。</li>
-              <li>節目表介接從「口頭需求」變成有規格、有報價、有 37 個測試案例的可驗收交付。</li>
+              <li><strong>持續維運與需求管理。</strong>處理官網、App、CMS、影音播放與內容營運回報，先判斷是操作、資料、外部服務、既有缺陷或新需求，再安排處理方式與優先度。</li>
+              <li><strong>資安與稽核交付。</strong>協調網站弱點掃描、App 檢測、修正證據與季報內容，讓技術處理結果能轉成機關可查核的文件。</li>
+              <li><strong>主動發現風險。</strong>除首頁健康檢查外，也把停止支援的執行環境與套件風險納入例行巡檢，先建立追蹤項目，再由團隊評估升級與驗收。</li>
+              <li><strong>原型協助討論。</strong>針對新版網站與影音後台製作可點擊原型與 UI／UX 說明，讓提案不只停在文字，利害關係人能直接針對流程與畫面討論。</li>
             </ul>
           </div>
           <div class="block">
-            <h4>我近期負責追蹤與驗收的技術演進</h4>
+            <h4>近期改版中，我負責追蹤與驗收的部分</h4>
             <ul>
-              <li><strong>程式碼與部署流程已搬回 GitHub。</strong>目前以 GitHub 的 main／develop 為準，部署腳本、Issue 連結與回退分支都已對齊，不再維持兩套來源。</li>
-              <li><strong>後端升級到 Laravel 13／PHP 8.3。</strong>新後端加入 Pest、PHPStan、Rector 與相依安全稽核；我負責確認切換條件、驗收範圍與舊站回退方案。</li>
-              <li><strong>前端部署改用 Node.js 24。</strong>移除未使用的 node-sass、固定間接相依版本；同時追蹤搜尋限速、全文索引、PHP-FPM 與部署不中斷等改善，依 Stage／正式標籤分開驗收。</li>
-              <li><strong>節目表正式改走 GCS CSV。</strong>舊端點停用後，排程監控只檢查實際使用的 iNEWS，避免誤報擋住真正的連線問題。</li>
+              <li><strong>單一 GitHub 流程。</strong>程式碼、Issue 與部署紀錄已統一回到 GitHub，正式、測試與舊版回退分支的用途清楚分開。</li>
+              <li><strong>後端改版切換。</strong>舊後端改為 Laravel 13／PHP 8.5，正式前端與 App 維持相容；我負責確認測試範圍、正式切換條件、已知差異與回退方案，工程師負責改寫與部署。</li>
+              <li><strong>部署與執行環境更新。</strong>前端部署改用 Node.js 24，後端部署改為可回退的版本切換流程；我依測試站與正式標籤確認實際部署版本，不把程式合併當成已上線。</li>
+              <li><strong>正式環境問題持續回收。</strong>搜尋效能、側錄轉檔、排程通知與資料同步等問題，在改版後仍持續觀察；發現異常就轉成可重現、可驗收的追蹤項目。</li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4>可以核對的證據</h4>
+            <ul>
+              <li><strong>正式服務：</strong><a href="https://www.hakkatv.org.tw/" target="_blank" rel="noreferrer">客家電視台影音網站</a>。</li>
+              <li><strong>可要求展示：</strong>節目表 CSV 規格說明書、需求與驗收對照表、測試資料與逐項驗收紀錄、改版切換與回退清單。</li>
+              <li><strong>責任邊界：</strong>GitHub 中可對照由我建立的需求與驗收紀錄，以及工程端的實作、部署與技術處理紀錄。</li>
             </ul>
           </div>
         </div>
