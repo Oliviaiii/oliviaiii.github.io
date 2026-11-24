@@ -170,42 +170,45 @@
       <div class="grid">
         <aside class="aside">
           <div class="index eyebrow">CASE 02 · 上線</div>
-          <h3>B2B 供貨 SaaS（LINE 生態）</h3>
-          <p class="muted small">產品負責人 ＋ 主要開發者 · 現職軟體開發公司</p>
+          <h3>B2B 供貨媒合 SaaS（LINE 生態）</h3>
+          <p class="muted small">產品重構負責人／AI 協作 Product Builder · 現職軟體開發公司</p>
           <ul class="kv">
             <li><span class="k">期間</span><span>2026.05 – 現在（上線中）</span></li>
-            <li><span class="k">型態</span><span>供應商 ↔ 商家的 B2B / B2B2C 訂貨平台，入口為 LINE LIFF 與網頁</span></li>
+            <li><span class="k">型態</span><span>媒合供應商與商家的 B2B 供貨平台，提供公開賣場、合作申請與 LINE 叫貨流程</span></li>
             <li><span class="k">技術</span><span>PHP 8.5／Laravel 12 ＋ Inertia 3（React 19 / TS）＋ Tailwind 4、PostgreSQL、Pest</span></li>
-            <li><span class="k">模組</span><span>M1–M11：賣場、商品、訂單、砍價改單、階梯價、通知、簽收、合作邀請…</span></li>
+            <li><span class="k">重構</span><span>重新設計共用流程、資料模型與介面；舊系統已完成退役</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
-            <div class="r"><div class="v">從 0 到上線</div><div class="l">產品規劃、核心開發、驗收與發布</div></div>
-            <div class="r"><div class="v">產品＋開發</div><div class="l">LINE 入口、訂單、通知、簽收與後台</div></div>
-            <div class="r"><div class="v">規格到驗收</div><div class="l">模組規格、測試閘門與正式路徑確認</div></div>
+            <div class="r"><div class="v">完整重構</div><div class="l">從商業流程、資料結構到前後台介面</div></div>
+            <div class="r"><div class="v">領域經驗</div><div class="l">把餐飲叫貨現場轉成系統規則</div></div>
+            <div class="r"><div class="v">人機協作</div><div class="l">我定義與驗收、AI 協作實作、工程師部署</div></div>
           </div>
         </aside>
         <div>
           <div class="block">
             <h4>情境</h4>
-            <p>供應商在 LINE 裡開賣場、商家在 LINE 裡訂貨。使用者不是工程師，多數在手機上操作：加好友、綁定通知、下單、砍價改單、簽收。任何一步卡住，他們不會回報，只會不用。</p>
+            <p>這是一個媒合供應商與商家的 B2B 供貨平台：供應商可以上架商品、經營公開賣場並與既有合作商家交易；商家也能直接在公開賣場尋找合適的供應商、提出合作申請，再透過 LINE 完成日常叫貨。舊系統歷經多人接續修改，許多商業規則、畫面與流程各自寫死，缺少能跨角色共用的設計，修改一個需求常會牽動多條路徑。公司後來把整套系統交由我重新設計與重構，目前舊系統已退役。</p>
           </div>
           <div class="block">
-            <h4>我負責產品規劃與驗收</h4>
+            <h4>我負責重構方向、產品規則與驗收</h4>
             <ul>
-              <li><strong>把「第一次使用也走得完」寫成規則。</strong>前台禁工程術語、禁 emoji、禁原生 alert／confirm、手機禁橫向捲動、主按鈕樣式統一、清單採「列＋側欄」——80 多條記憶規範，AI 實作時自動遵守，不用每次講。</li>
-              <li><strong>先驗再發。</strong>每個新功能（階梯價、合作邀請、通知中心、簽收流程）先用瀏覽器在本機或測試站實際下單、逐一觸發 LINE 通知檢查 Flex Message、切 5 種螢幕寬度，通過才發版；發版後等 workflow 完成，驗 health endpoint 與實際路徑（例如未登入深連結是否正確導到登入再回到目標對話框）。</li>
+              <li><strong>把餐飲現場經驗轉成產品規則。</strong>我做過食材處理、成本控管、供應商叫貨、現場調度與人員管理，熟悉價格變動、臨時加單、到貨簽收與對帳等真實情境；重構時不只搬功能，而是重新判斷供應商與商家各自在什麼時間需要看到什麼資訊。</li>
+              <li><strong>用自然語言和 AI 協作重構。</strong>我把使用情境、資料關係、例外條件、允許與禁止行為寫成規格及驗收條件，讓 AI 依規則實作；每一批變更再由我操作、反駁與修正，不把 AI 產出的程式直接視為完成。</li>
+              <li><strong>把「第一次使用也走得完」寫成共用規則。</strong>前台避免工程術語、原生彈窗與手機橫向捲動，統一主要操作、狀態、清單與錯誤提示；這些規則成為 AI 實作時必須遵守的產品基線。</li>
+              <li><strong>先驗再發。</strong>每個新功能先在本機或測試站實際走過合作申請、下單、改單、簽收與 LINE 通知，並跨手機與桌機寬度驗收；正式部署由工程師執行，我負責交付前條件、切換清單與部署後實際路徑確認。</li>
               <li><strong>把摩擦點變成票。</strong>綁定通知流程卡在連動畫面、供應商不知道 rich menu 要貼什麼連結、商家查看賣場 404——我自己操作發現，開票、驗收、結案；能整批處理的就整批規劃與交付。</li>
               <li><strong>教學影片自動化。</strong>做了 <a href="https://github.com/Oliviaiii" target="_blank" rel="noreferrer">tutorial-recorder</a>：用腳本操作系統、產生旁白與字幕、重點推近，一行指令產出 mp4 ＋ srt；功能改版重錄也是同一行指令。</li>
-              <li><strong>上線前清單。</strong>舊站轉換的上線前必修清單、網址交換計畫、正式環境唯讀盤點，全部寫成文件進倉庫，讓下一個 session（或下一個人）照著做。</li>
+              <li><strong>新舊系統切換。</strong>盤點舊版功能與資料、整理上線前必修清單、網址交換與回退計畫；正式環境部署交由工程師處理，我負責確認功能、資料與使用流程能完成交接。</li>
             </ul>
           </div>
           <div class="block">
             <h4>我負責實作並做到落地的功能</h4>
             <ul>
-              <li><strong>從零建立可運作的產品。</strong>完成 Docker 環境、Laravel／React 骨架、資料模型、前後台介面與部署流程，不只停在原型。</li>
-              <li><strong>模組 M1–M14。</strong>帳號與身份、供應商賣場與組織、買家與商家成員、合作夥伴關係、訂單（代客建單、配送派工、三種現場簽收）、LINE 通知、LIFF 介面、系統管理後台、商品結構與規格、買家等級與折扣、探索區、公開櫥窗、官方網站、方案與試用期。</li>
+              <li><strong>從零建立可運作的產品。</strong>透過 AI 協作完成 Docker 環境、Laravel／React 骨架、資料模型、前後台介面與測試流程，不只停在原型。</li>
+              <li><strong>媒合、賣場與合作關係。</strong>完成供應商申請與審核、商品與多規格、公開賣場、跨供應商探索、合作邀請與申請、買家等級和折扣，讓商家能先找到供應商，再建立可下單的合作關係。</li>
+              <li><strong>叫貨到交付。</strong>完成購物車、訂單、供應商改單、商家確認、配送派工、現場簽收、退貨、對帳與 LINE 通知，讓線下叫貨習慣有一條可追蹤的數位流程。</li>
               <li><strong>該硬的地方。</strong>金流回調防護（逾時 throw、鎖內冪等、權威 orderId 與金額）、LINE 憑證健康檢查（供應商一鍵檢查＋每日自動巡檢）、圖片目錄權限與部署清單、LIFF 內對話框限高的真因修正。</li>
-              <li><strong>發版閘門。</strong>Pest、自動型別檢查與 production build 全綠才推；發版後再驗 health endpoint、LIFF 深連結與實際下單路徑。</li>
+              <li><strong>交付閘門。</strong>Pest、自動型別檢查與 production build 全綠後才交付工程師部署；部署完成再驗 health endpoint、LIFF 深連結與實際下單路徑。</li>
             </ul>
           </div>
           <div class="block">
@@ -217,19 +220,28 @@
             </ul>
           </div>
           <div class="block">
-            <h4>結果</h4>
-            <ul>
-              <li>重整 8 個設定分頁與 20 處欄位提示，跨 5 種畫面寬度驗收，檢查 7 條資料深連結並維持租戶隔離。</li>
-              <li>核心模組 M1–M4、M9–M11 完成，M5／M6／M7 與上線工作進行中；供應商邀請深連結、LIFF 入口修正等已發到測試站並驗證。</li>
-            </ul>
-          </div>
-          <div class="block">
             <h4>可以核對的證據</h4>
             <ul>
               <li><strong>實際服務入口：</strong><a href="https://liff.linerp.co" target="_blank" rel="noreferrer">徠能｜LINE 生態系進銷存 ERP</a>。</li>
-              <li>教學影片自動錄製工具的 README 與腳本結構（可要求展示）。</li>
+              <li><strong>實際教學影片：</strong>以下影片由自動錄製流程產出並部署在正式網域；完整教學可在產品的 LINE 教學入口依供應商／商家角色查找。</li>
               <li>我下給 AI 的批次指令與驗收指令原文：<a href="ai-workflow.html#prompts">指令節錄</a>。</li>
             </ul>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin-top:16px">
+              <figure style="margin:0">
+                <video controls preload="metadata" playsinline style="display:block;width:100%;aspect-ratio:16/9;background:#111;border:1px solid var(--line)">
+                  <source src="https://linerp.co/videos/line-help/merchant-first-order-v1.mp4" type="video/mp4">
+                  您的瀏覽器不支援影片播放，請<a href="https://linerp.co/videos/line-help/merchant-first-order-v1.mp4" target="_blank" rel="noreferrer">直接開啟影片</a>。
+                </video>
+                <figcaption class="muted small" style="margin-top:8px">商家教學｜第一張訂單：從逛商品到送出</figcaption>
+              </figure>
+              <figure style="margin:0">
+                <video controls preload="metadata" playsinline style="display:block;width:100%;aspect-ratio:16/9;background:#111;border:1px solid var(--line)">
+                  <source src="https://linerp.co/videos/line-help/supplier-product-v1.mp4" type="video/mp4">
+                  您的瀏覽器不支援影片播放，請<a href="https://linerp.co/videos/line-help/supplier-product-v1.mp4" target="_blank" rel="noreferrer">直接開啟影片</a>。
+                </video>
+                <figcaption class="muted small" style="margin-top:8px">供應商教學｜上架第一個商品</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </div>
