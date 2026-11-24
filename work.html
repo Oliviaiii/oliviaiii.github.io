@@ -73,8 +73,8 @@
           <p class="why"><b>LIVE</b>實際服務入口：liff.linerp.co</p>
         </a>
         <a class="project" href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">
-          <div class="top"><h3>LINERP LINE OA AI 客服</h3><span class="ext">加入好友</span></div>
-          <p>LINERP 的官方 LINE 客服；加入後可直接詢問產品操作與使用流程。</p>
+          <div class="top"><h3>LINE OA AI 客服平台</h3><span class="ext">開啟範例</span></div>
+          <p>獨立的 RAG 客服產品；目前以 LINERP 官方 LINE OA 作為實際接入範例。</p>
           <p class="why"><b>TRY</b>LINE ID：@594fgqbs</p>
         </a>
       </div>
@@ -361,32 +361,33 @@
       <div class="grid">
         <aside class="aside">
           <div class="index eyebrow">CASE 05 · AI PRODUCT</div>
-          <h3>LINERP LINE OA AI 客服（RAG）</h3>
+          <h3>LINE OA AI 客服平台（RAG）</h3>
           <p class="muted small">產品規劃、AI 協作開發與落地 · 現職軟體開發公司</p>
           <ul class="kv">
             <li><span class="k">期間</span><span>2026.06 – 現在</span></li>
-            <li><span class="k">產品</span><span>LINERP 官方 LINE OA 客服 <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">@594fgqbs</a>；使用者可直接詢問產品操作與流程</span></li>
+            <li><span class="k">產品</span><span>獨立於 LINERP 的 AI 客服平台，可接上不同產品的 Repository 與 LINE OA；目前以 <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer">LINERP @594fgqbs</a> 作為實際範例</span></li>
             <li><span class="k">角色</span><span>定義產品規則、規格與驗收；以自然語言和 AI 協作完成實作，並建立部署與維運方式</span></li>
-            <li><span class="k">技術</span><span>LINE Messaging API、FastAPI、PostgreSQL／pgvector、Redis、GitHub App、Gemini</span></li>
+            <li><span class="k">技術</span><span>LINE Messaging API、FastAPI、PostgreSQL／pgvector、Redis、GitHub App、地端 DGX 模型服務</span></li>
           </ul>
           <div class="result-grid" style="grid-template-columns:1fr;margin-top:16px">
-            <div class="r"><div class="v">LINERP 文件變知識</div><div class="l">GitHub 操作文件更新後，可同步建立新版知識索引</div></div>
+            <div class="r"><div class="v">Repo 就是知識來源</div><div class="l">直接同步產品文件，不另外維護一份客服知識庫</div></div>
             <div class="r"><div class="v">回答有邊界</div><div class="l">有依據才回答；資訊不足、系統忙與題外問題分開處理</div></div>
-            <div class="r"><div class="v">從 LINERP 延伸</div><div class="l">先完成官方客服，再保留擴充其他 Bot 的隔離能力</div></div>
+            <div class="r"><div class="v">地端 DGX 模型</div><div class="l">改寫、檢索排序與回答生成使用公司內部模型服務</div></div>
           </div>
         </aside>
         <div>
           <div class="block">
             <h4>為什麼要做</h4>
-            <p>LINERP 的供應商與商家原本就在 LINE 內使用產品，遇到操作問題時，也會直接到官方帳號詢問。客服需要反覆翻找操作文件、確認版本，再把同一件事重新說一次；文件更新後，舊回答也可能繼續流通。我以 LINERP 官方 LINE OA 為第一個實際使用情境，由文件提供答案依據，AI 負責理解問法與組織回覆，沒有足夠依據時就釐清或回收問題。</p>
+            <p>每個產品原本就會在自己的 Repository 維護操作文件；如果為 AI 客服再複製一份知識庫，功能更新時就要同步改兩邊，也容易讓客服回答落後。我把它設計成獨立產品，直接讀取目標 Repository 的指定文件並建立 RAG 索引，再接到對應的 LINE 官方帳號。LINERP 是目前的實際接入範例，不是這套客服平台本身。</p>
           </div>
           <div class="block">
             <h4>我如何把它做成產品</h4>
             <ul>
-              <li><strong>先定義 AI 可以知道什麼。</strong>知識只從指定的 GitHub 文件目錄同步，不讀整個程式庫；文件先完成索引與檢核，再切換成新版本，同步失敗時保留上一版，避免知識更新到一半就對外回答。</li>
+              <li><strong>讓產品文件成為唯一知識來源。</strong>以 LINERP 為例，平台直接同步 LINERP Repository 內的操作文件，不需要另外複製或維護客服版文件。文件異動後會重新建立索引並完成檢核，再切換成新版本；同步失敗時保留上一版，避免更新到一半就對外回答。</li>
               <li><strong>把「答不出來」設計成正常流程。</strong>有文件依據才回答；問法有歧義時先反問，文件沒有答案就留下未命中紀錄，外部服務異常則明確回覆系統忙，不把技術失敗說成產品沒有功能。</li>
+              <li><strong>使用地端 DGX 完成整套 RAG。</strong>問句改寫與答案生成使用 DGX 上的 company-brain，文件向量化使用 BGE-M3，檢索結果再由 reranker 重新排序；平台只把通過門檻的文件片段交給模型組織回覆。</li>
               <li><strong>讓 LINE 對話真的能使用。</strong>處理 Webhook 驗證、重複訊息、連續傳送與上下文延續，並把回答整理成適合手機閱讀的純文字；失敗工作可重試、可告警，也能由後台查看。</li>
-              <li><strong>從單一客服擴成平台。</strong>同一套服務可接多個 LINE 官方帳號，依 LINE 事件辨識 Bot；各 Bot 的知識、對話、設定與金鑰分開管理，資料庫再加上租戶隔離，降低跨客戶讀到資料的風險。</li>
+              <li><strong>讓獨立產品可以接不同專案。</strong>同一套服務可連接不同 Repository 與 LINE 官方帳號，依 LINE 事件辨識 Bot；各 Bot 的知識、對話、設定與金鑰分開管理，資料庫再加上租戶隔離，降低跨客戶讀到資料的風險。</li>
               <li><strong>讓非開發者也能維運。</strong>後台可以新增 Bot、設定 LINE 與知識來源、查看同步狀態、未命中問題、錯誤診斷、對話與用量；敏感憑證加密保存，重要操作保留稽核紀錄。</li>
             </ul>
           </div>
@@ -397,15 +398,16 @@
           <div class="block">
             <h4>目前能完成的事</h4>
             <ul>
-              <li>從指定 GitHub 文件建立並更新知識庫，保留同步狀態與版本紀錄。</li>
+              <li>直接同步目標 Repository 的產品文件，不需要額外維護另一份客服知識庫。</li>
               <li>在 LINE 進行有依據的產品問答、釐清模糊問題並延續同一段對話。</li>
+              <li>使用地端 DGX 的生成、Embedding 與 Reranker 模型完成問題理解、文件檢索與回答。</li>
               <li>以同一套後台管理多個 Bot，查看未命中問題、同步狀態、錯誤診斷及 AI 用量。</li>
               <li>透過測試門檻、版本標籤與回退流程部署；Repository 更名或知識來源異動時，也能追蹤同步是否真正完成。</li>
             </ul>
           </div>
           <div class="block">
             <h4>可以直接試用</h4>
-            <p>加入 LINERP 官方 LINE OA <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer"><strong>@594fgqbs</strong></a>，即可直接詢問產品操作與使用流程，體驗這套 RAG AI 客服。</p>
+            <p>這套客服平台是獨立產品；目前可加入 LINERP 官方 LINE OA <a href="https://line.me/R/ti/p/@594fgqbs" target="_blank" rel="noreferrer"><strong>@594fgqbs</strong></a>，把 LINERP 當作實際範例，體驗 Repository 文件同步、RAG 問答與對話延續。</p>
           </div>
         </div>
       </div>
