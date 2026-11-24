@@ -218,7 +218,7 @@ def role_header(
 
 
 def link(label: str, url: str) -> str:
-    return f'<link href="{url}" color="#087F73"><u>{label}</u></link>'
+    return f'<link href="{url}" color="#087F73"><u>{label}</u> <font size="7.5">&#8599;</font></link>'
 
 
 def draw_page(canvas, doc) -> None:

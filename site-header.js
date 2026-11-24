@@ -21,8 +21,8 @@
       '<a class="site-brand" href="index.html">林芷筠 <small>Olivia Lin · Product Builder</small></a>' +
       '<nav class="site-nav" aria-label="主導覽">' +
         navLinks +
-        '<a class="site-mobile-resume" href="林芷筠中文履歷.pdf?v=20261124" download>PDF 履歷</a>' +
+        '<a class="site-mobile-resume" href="林芷筠中文履歷.pdf?v=20261124-2" download>PDF 履歷</a>' +
       '</nav>' +
-      '<a class="site-header-cta" href="林芷筠中文履歷.pdf?v=20261124" download>PDF 履歷</a>' +
+      '<a class="site-header-cta" href="林芷筠中文履歷.pdf?v=20261124-2" download>PDF 履歷</a>' +
     '</div>';
 }());
