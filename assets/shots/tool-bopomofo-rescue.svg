@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">bopomofo-rescue 注音亂碼自動還原流程</title>
+  <desc id="desc">訊息送出時，UserPromptSubmit hook 偵測注音鍵盤亂碼，透過詞頻解碼後交由 AI 按上下文選字，將 dk3u3 還原為可以。</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#dfe5e3" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="750" fill="#f6f7f5"/>
+  <rect width="1200" height="750" fill="url(#grid)" opacity=".55"/>
+  <rect x="54" y="48" width="1092" height="654" rx="18" fill="#fff" stroke="#cfd8d5" stroke-width="2"/>
+
+  <text x="92" y="100" fill="#087f73" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="600" letter-spacing="2">BOPOMOFO RESCUE</text>
+  <text x="92" y="142" fill="#111214" font-family="Noto Sans TC, sans-serif" font-size="38" font-weight="600">忘記切輸入法，也不用重打</text>
+  <text x="92" y="180" fill="#686d73" font-family="Noto Sans TC, sans-serif" font-size="20">訊息送出時自動偵測，只修正高信心的注音亂碼片段</text>
+
+  <g transform="translate(92 238)">
+    <rect width="310" height="270" rx="14" fill="#f6f7f7" stroke="#d7dddb" stroke-width="2"/>
+    <text x="28" y="44" fill="#7b8085" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="1.5">01 / RAW PROMPT</text>
+    <text x="28" y="102" fill="#111214" font-family="Noto Sans TC, sans-serif" font-size="26">這個 PR</text>
+    <rect x="27" y="124" width="164" height="58" rx="8" fill="#111214"/>
+    <text x="47" y="163" fill="#fff" font-family="IBM Plex Mono, monospace" font-size="30" font-weight="600">dk3u3</text>
+    <text x="28" y="224" fill="#111214" font-family="Noto Sans TC, sans-serif" font-size="26">merge 了嗎？</text>
+  </g>
+
+  <g transform="translate(446 238)">
+    <rect width="310" height="270" rx="14" fill="#e8f5f2" stroke="#9bcfc6" stroke-width="2"/>
+    <text x="28" y="44" fill="#087f73" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="1.5">02 / HOOK DECODE</text>
+    <circle cx="155" cy="125" r="54" fill="#087f73"/>
+    <path d="M128 126h54M155 99v54" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+    <text x="74" y="210" fill="#111214" font-family="Noto Sans TC, sans-serif" font-size="23" font-weight="600">詞典分詞＋詞頻</text>
+    <text x="85" y="242" fill="#555b60" font-family="Noto Sans TC, sans-serif" font-size="18">先還原讀音，不亂猜</text>
+  </g>
+
+  <g transform="translate(800 238)">
+    <rect width="310" height="270" rx="14" fill="#101214" stroke="#101214" stroke-width="2"/>
+    <text x="28" y="44" fill="#82d3c7" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="1.5">03 / CONTEXT OUTPUT</text>
+    <text x="28" y="104" fill="#b8bdc0" font-family="Noto Sans TC, sans-serif" font-size="20">AI 依上下文選字</text>
+    <text x="28" y="179" fill="#fff" font-family="Noto Sans TC, sans-serif" font-size="58" font-weight="700">可以</text>
+    <rect x="28" y="208" width="196" height="35" rx="17.5" fill="#173c38"/>
+    <text x="48" y="232" fill="#82d3c7" font-family="IBM Plex Mono, monospace" font-size="15">ZERO COMMAND</text>
+  </g>
+
+  <path d="M408 373h30" stroke="#087f73" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="438" cy="373" r="5" fill="#087f73"/>
+  <path d="M762 373h30" stroke="#087f73" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="792" cy="373" r="5" fill="#087f73"/>
+
+  <line x1="92" y1="564" x2="1110" y2="564" stroke="#d7dddb" stroke-width="2"/>
+  <g transform="translate(92 603)">
+    <text x="0" y="0" fill="#087f73" font-family="IBM Plex Mono, monospace" font-size="17" font-weight="600">USER PROMPT SUBMIT</text>
+    <text x="0" y="34" fill="#555b60" font-family="Noto Sans TC, sans-serif" font-size="18">送出即解碼，不新增操作步驟</text>
+  </g>
+  <g transform="translate(478 603)">
+    <text x="0" y="0" fill="#087f73" font-family="IBM Plex Mono, monospace" font-size="17" font-weight="600">72 TESTS</text>
+    <text x="0" y="34" fill="#555b60" font-family="Noto Sans TC, sans-serif" font-size="18">含 27 個防誤判案例</text>
+  </g>
+  <g transform="translate(810 603)">
+    <text x="0" y="0" fill="#087f73" font-family="IBM Plex Mono, monospace" font-size="17" font-weight="600">FAIL SAFE</text>
+    <text x="0" y="34" fill="#555b60" font-family="Noto Sans TC, sans-serif" font-size="18">信心不足就保留原文</text>
+  </g>
+</svg>
