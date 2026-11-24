@@ -34,7 +34,7 @@
 .work-hero .container { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr); gap: clamp(70px, 10vw, 160px); align-items: center; }
 .detail-hero h1 {
   margin: 28px 0 0;
-  font-size: clamp(56px, 6.8vw, 104px) !important;
+  font-size: clamp(50px, 5.3vw, 80px) !important;
   font-weight: 500;
   line-height: .98;
   letter-spacing: -.065em;
@@ -129,7 +129,7 @@
   .detail-hero { min-height: auto; padding: 100px 0 84px; }
   .work-hero .container,
   .ai-hero .hero-grid { grid-template-columns: 1fr; gap: 58px; }
-  .detail-hero h1 { font-size: clamp(54px, 12vw, 84px) !important; }
+  .detail-hero h1 { font-size: clamp(48px, 9vw, 68px) !important; }
   .inner-page .section-head { grid-template-columns: 1fr; gap: 14px; }
   .inner-page .case-detail .grid { grid-template-columns: 1fr; }
   .inner-page .case-detail .aside { position: static; }
@@ -138,7 +138,7 @@
 @media (max-width: 640px) {
   .inner-page .container { padding-inline: 20px; }
   .detail-hero { padding: 100px 0 72px; }
-  .detail-hero h1 { font-size: 52px !important; }
+  .detail-hero h1 { font-size: 44px !important; }
   .detail-hero-copy .lead,
   .ai-hero .lead { font-size: 16px; }
   .inner-page .section { padding: 78px 0; }
