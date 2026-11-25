@@ -124,6 +124,15 @@
 .conclusion-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .72fr); gap: clamp(64px, 10vw, 150px); align-items: start; }
 .conclusion-grid h2 { margin: 26px 0 0; font-size: clamp(44px, 5.2vw, 76px); font-weight: 500; line-height: 1.06; letter-spacing: -.055em; }
 .conclusion-grid > div:last-child > p { margin: 0 0 20px; color: #454a50; font-size: 17px; line-height: 1.85; }
+.certification-inline { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 16px; align-items: center; max-width: 440px; margin-top: 30px; padding: 12px; border: 1px solid rgba(8, 127, 115, .24); color: var(--ai-black); background: rgba(255, 255, 255, .5); text-decoration: none; }
+.certification-inline:hover { border-color: var(--ai-green); background: #fff; }
+.certification-inline img { display: block; width: 58px; height: 76px; object-fit: cover; object-position: top; border: 1px solid rgba(16, 18, 20, .12); }
+.certification-inline small,
+.certification-inline strong,
+.certification-inline em { display: block; }
+.certification-inline small { margin-bottom: 5px; color: var(--ai-green); font: 500 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.certification-inline strong { font-size: 15px; font-weight: 600; }
+.certification-inline em { margin-top: 5px; color: #6c7276; font: normal 12px var(--mono); }
 .conclusion-grid .page-nav { display: flex; justify-content: flex-start; gap: 14px; margin-top: 38px; }
 
 @media (max-width: 1000px) {
